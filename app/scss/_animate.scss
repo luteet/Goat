@@ -18,3 +18,15 @@
 	transform: translate3d(0,100%,0);
 	opacity: 1;
 }
+.underline-text {
+	position: relative;
+	& .underline-text-element {
+		position: absolute;
+		left: 0; top: 0;
+	}
+	& .underline-text-span {
+		
+		color: transparent;
+		user-select: none;
+	}
+}

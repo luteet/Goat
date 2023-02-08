@@ -161,7 +161,7 @@ function wordsToLines() {
 		text.innerHTML = '';
 		//console.log(textResult)
 		//const isHTMLTag = (str) => /(^<([^>]+)>$)/i.test(str)
-		console.log(textResult)
+		
 		Array.from(textResult).forEach((textElement, index) => {
 
 			if(!activeTag) {

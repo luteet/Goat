@@ -2,7 +2,7 @@ body,html {
     -webkit-text-size-adjust: 100%
 }
 
-.swiper-cube,.swiper-flip,button,hr,input {
+button,hr,input {
     overflow: visible
 }
 
@@ -20,10 +20,6 @@ progress,sub,sup {
 
 .btn,.footer__header,.footer__nav--info-item,.header__nav--accent,.swiper-pagination,.swiper-zoom-container,.txt-center {
     text-align: center
-}
-
-.mouse,.swiper-cube .swiper-slide,.swiper-slide-invisible-blank {
-    visibility: hidden
 }
 
 * {
@@ -286,6 +282,10 @@ summary {
     display: none
 }
 
+.swiper-slide-invisible-blank {
+    visibility: hidden
+}
+
 .swiper-autoheight,.swiper-autoheight .swiper-slide {
     height: auto
 }
@@ -398,10 +398,6 @@ summary {
     height: 100%;
     min-height: 1px;
     width: var(--swiper-centered-offset-after)
-}
-
-.header__nav--body,.intro__bg--video,.wrapper,body,html {
-    min-height: 100%
 }
 
 .swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
@@ -550,10 +546,6 @@ summary {
     content: "next"
 }
 
-.btn::after,.header__nav--body::before,.header__social--link::before,.intro__bg::after,.swiper-cube .swiper-cube-shadow:before {
-    content: ""
-}
-
 .swiper-pagination {
     position: absolute;
     transition: .3s opacity;
@@ -580,6 +572,10 @@ summary {
 .swiper-pagination-bullets-dynamic {
     overflow: hidden;
     font-size: 0
+}
+
+.swiper-cube,.swiper-flip {
+    overflow: visible
 }
 
 .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
@@ -630,10 +626,6 @@ button.swiper-pagination-bullet {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none
-}
-
-.swiper-scrollbar,.swiper-scrollbar-drag {
-    border-radius: var(--swiper-scrollbar-border-radius,10px)
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
@@ -739,6 +731,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-scrollbar {
+    border-radius: var(--swiper-scrollbar-border-radius,10px);
     position: relative;
     -ms-touch-action: none;
     background: var(--swiper-scrollbar-bg-color,rgba(0,0,0,.1))
@@ -773,6 +766,7 @@ button.swiper-pagination-bullet {
     width: 100%;
     position: relative;
     background: var(--swiper-scrollbar-drag-bg-color,rgba(0,0,0,.5));
+    border-radius: var(--swiper-scrollbar-border-radius,10px);
     left: 0;
     top: 0
 }
@@ -803,10 +797,6 @@ button.swiper-pagination-bullet {
 .swiper-slide-zoomed {
     cursor: move;
     touch-action: none
-}
-
-.cursor-drag,.custom-cursor-open:hover {
-    cursor: none
 }
 
 .swiper .swiper-notification,swiper-container .swiper-notification {
@@ -849,6 +839,7 @@ button.swiper-pagination-bullet {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     z-index: 1;
+    visibility: hidden;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     width: 100%;
@@ -890,6 +881,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-cube .swiper-cube-shadow:before {
+    content: "";
     background: #000;
     position: absolute;
     left: 0;
@@ -898,10 +890,6 @@ button.swiper-pagination-bullet {
     right: 0;
     -webkit-filter: blur(50px);
     filter: blur(50px)
-}
-
-.btn,section {
-    position: relative
 }
 
 .swiper-flip .swiper-slide {
@@ -970,7 +958,8 @@ button.swiper-pagination-bullet {
 }
 
 body,html {
-    font-size: 16px
+    font-size: 16px;
+    min-height: 100%
 }
 
 body {
@@ -983,6 +972,10 @@ body {
 
 .btn,.words-to-lines>span,.words-to-lines>span>span {
     display: inline-block
+}
+
+.wrapper {
+    min-height: 100%
 }
 
 .main {
@@ -1000,6 +993,7 @@ body {
 }
 
 section {
+    position: relative;
     z-index: 2
 }
 
@@ -1027,6 +1021,7 @@ section {
     padding: 13.8px 26px;
     font-size: .875rem;
     line-height: 146.4%;
+    position: relative;
     background: rgba(0,0,0,0);
     color: var(--black);
     border-radius: 5px;
@@ -1038,6 +1033,7 @@ section {
 }
 
 .btn::after {
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -1066,26 +1062,16 @@ section {
     margin-right: 10px
 }
 
+.header__nav--body::before,.header__social--link::before,.intro__bg::after {
+    content: ""
+}
+
 .btn._transform-to-link-plus::after {
     display: none
 }
 
-.underline-text {
-    position: relative
-}
-
-.underline-text .underline-text-element {
-    position: absolute;
-    left: 0;
-    top: 0
-}
-
-.underline-text .underline-text-span {
-    color: transparent;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
+.custom-cursor-open:hover {
+    cursor: none
 }
 
 .section-header {
@@ -1155,7 +1141,8 @@ section {
     transition: opacity .2s ease-in-out,visibility .2s ease-in-out,-webkit-transform .2s ease-in-out;
     transition: opacity .2s ease-in-out,visibility .2s ease-in-out,transform .2s ease-in-out;
     transition: opacity .2s ease-in-out,visibility .2s ease-in-out,transform .2s ease-in-out,-webkit-transform .2s ease-in-out;
-    opacity: 0
+    opacity: 0;
+    visibility: hidden
 }
 
 .video-auto-poster,.video-poster {
@@ -1212,6 +1199,10 @@ section {
     transform: translate3d(-50%,-50%,0) scale(.8)
 }
 
+.cursor-drag {
+    cursor: none
+}
+
 .preloader {
     position: fixed;
     left: 0;
@@ -1226,12 +1217,6 @@ section {
     display: flex;
     align-items: center;
     justify-content: center
-}
-
-.header,.scroll-check {
-    position: absolute;
-    top: 0;
-    left: 0
 }
 
 .preloader._active .preloader__element {
@@ -1250,6 +1235,12 @@ section {
 .preloader._loaded {
     -webkit-transform: translate3d(0,-100%,0);
     transform: translate3d(0,-100%,0)
+}
+
+.scroll-check {
+    position: absolute;
+    left: 0;
+    top: 0
 }
 
 .main-title {
@@ -1314,6 +1305,24 @@ section {
     visibility: hidden
 }
 
+.underline-text {
+    position: relative
+}
+
+.header,.underline-text .underline-text-element {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.underline-text .underline-text-span {
+    color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
 .header {
     width: 100%;
     z-index: 99;
@@ -1359,7 +1368,8 @@ section {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--height-header) 40px 61px
+    padding: var(--height-header) 40px 61px;
+    min-height: 100%
 }
 
 .header__nav--body::before {
@@ -1534,6 +1544,7 @@ section {
 }
 
 .intro__bg--video {
+    min-height: 100%;
     flex: 1 1 auto
 }
 
