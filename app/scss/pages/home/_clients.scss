@@ -109,19 +109,17 @@
 		// .clients__slide--content
 
 		&--content {
-			display: grid;
 			flex: 1 1 auto;
-			& > * {
-				grid-area: 1/1;
-				
-			}
+			position: relative;
 		}
 
 		// .clients__slide--logo
 
 		&--logo {
-			align-self: center;
-			justify-self: center;
+			position: absolute;
+			left: 50%; top: 50%;
+			transform: translate(-50%,-50%);
+			max-width: 100%;
 
 			opacity: 1; visibility: visible;
 			transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
