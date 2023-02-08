@@ -816,31 +816,16 @@ function smoothScrollbarInit() {
 
 	bodyScrollBar.addListener(({ offset }) => {
 
-		if(windowSize >= 1000) {
-			scrollPositionX = offset.x;
-			scrollPositionY = offset.y;
-	
-			if(body.classList.contains('_active')) bodyScrollBar.setPosition(0, 0, 0);
-	
-			parallaxElementsFunc(scrollPositionY);
-		} else {
-			bodyScrollBar.destroy()
-		}
+		scrollPositionX = offset.x;
+		scrollPositionY = offset.y;
+
+		if(body.classList.contains('_active')) bodyScrollBar.setPosition(0, 0, 0);
+
+		parallaxElementsFunc(scrollPositionY);
 
 		animScroll()
 
 	});
-
-	/* scrollAnimation = scrollAnimation({
-		element: '#main-scrollbar'
-	});
-	
-	var smoothScrollBar = scrollAnimation.getScrollBar();
-	
-	var element = document.querySelector('.ss');
-	smoothScrollBar.addListener(() => {
-		console.log(smoothScrollBar.isVisible(element));    
-	}); */
 
 }
 
