@@ -491,6 +491,8 @@ section {
 	width: 100vw; height: 100vh;
 	background: var(--black);
 	z-index: 1000;
+
+	will-change: transform;
 	transition: transform .4s ease-in-out;
 
 	display: flex;
