@@ -515,7 +515,7 @@ let projectsSlider = new Swiper('.projects__slider', {
 
 let sliderSpeed = 1500, autoplayDelay = 4000;
 
-let passionImageSlider = new Swiper('.passion__image-slider', {
+/* let passionImageSlider = new Swiper('.passion__image-slider', {
 
 	spaceBetween: 0,
 	slidesPerView: 1,
@@ -529,7 +529,7 @@ let passionImageSlider = new Swiper('.passion__image-slider', {
 		disableOnInteraction: false,
 	},
 
-});
+}); */
 
 const passionTimer = document.querySelectorAll('.passion__timer');
 
@@ -552,9 +552,9 @@ let passionContentSlider = new Swiper('.passion__content-slider', {
 		prevEl: '.swiper-button-prev',
 	},
 
-	thumbs: {
+	/* thumbs: {
 		swiper: passionImageSlider,
-	},
+	}, */
 
 	on: {
 		init: function () {
