@@ -867,8 +867,10 @@ function resize() {
 	},
 	function () {  // screen < 992px
 
-		if(bodyScrollBar) {
+		try {
 			bodyScrollBar.destroy()
+		} catch {
+			
 		}
 		
 
