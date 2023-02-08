@@ -112,17 +112,26 @@
 			<div class="projects__slider anim-element anim-fade-up swiper" data-index="2" data-duration="1.2">
 				<div class="projects__slider--list projects__list swiper-wrapper">
 					<div class="projects__slider--slide projects__card swiper-slide">
-						<a href="#" class="projects__card--body custom-cursor-open">
+						<a href="#" class="projects__card--body custom-cursor-open video-on-hover">
 							<div class="mouse _open-mode" aria-hidden="true">
 								<svg width="20" height="20">
 									<use xlink:href="img/sprites.svg#plus"></use>
 								</svg>
 							</div>
-							<div class="projects__card--bg">
+							<!-- <div class="projects__card--video">
 								<picture>
 									<source srcset="img/home/our-projects/image-1.webp" type="image/webp">
 									<img src="img/home/our-projects/image-1.jpg" alt="" width="353" height="501" loading="lazy">
 								</picture>
+							</div> -->
+							<div class="projects__card--video">
+								<div class="projects__card--video-wrapper video-wrapper">
+									<video src="video/projectvideo_1.mp4" class="video-element" preload="auto" muted loop playsinline></video>
+									<picture>
+										<source srcset="img/home/our-projects/image-1.webp" type="image/webp">
+										<img src="img/home/our-projects/image-1.jpg" alt="" width="353" height="277" loading="lazy" class="video-preview">
+									</picture>
+								</div>
 							</div>
 							<div class="projects__card--logo">
 								<img src="img/home/our-projects/logo-1.svg" loading="lazy" alt="">

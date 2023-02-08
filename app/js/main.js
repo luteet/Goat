@@ -120,6 +120,7 @@ function hover(hover, blur) {
 	videoOnHover.forEach(videoOnHover => {
 		let blurCheck = false;
 		videoOnHover.addEventListener('mouseenter', function () {
+			console.log('video')
 			
 			const video = 	videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
 
