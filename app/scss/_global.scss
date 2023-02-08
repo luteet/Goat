@@ -336,7 +336,10 @@ section {
 		//width: calc(87px + var(--speed,0)); height: calc(87px + var(--speed,0));
 		//transition: width .1s linear, height .1s linear;
 		width: 87px; height: 87px;
-		display: flex;
+		display: none;
+		@media (any-hover: hover) {
+			display: flex;
+		}
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
@@ -356,7 +359,10 @@ section {
 		pointer-events: none;
 		width: 178px; height: 178px;
 		background: var(--black);
-		display: flex;
+		display: none;
+		@media (any-hover: hover) {
+			display: flex;
+		}
 		align-items: center;
 		justify-content: center;
 		color: var(--white);

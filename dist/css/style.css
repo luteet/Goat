@@ -1027,12 +1027,15 @@ section {
     transition: color .2s ease-in-out,background .2s ease-in-out
 }
 
+.btn::after,.mouse,.toggle-btn span {
+    position: absolute
+}
+
 .btn._light {
     color: var(--white)
 }
 
 .btn::after {
-    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
@@ -1097,7 +1100,6 @@ section {
 .toggle-btn span {
     align-items: center;
     justify-content: center;
-    position: absolute;
     left: 0;
     top: 0;
     transition: -webkit-transform .3s ease-in-out;
@@ -1122,7 +1124,6 @@ section {
 
 .mouse {
     display: none;
-    position: absolute;
     left: var(--mouse-x);
     top: var(--mouse-y);
     z-index: 1000;
@@ -1152,7 +1153,7 @@ section {
 .mouse._open-mode {
     width: 87px;
     height: 87px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -1175,7 +1176,7 @@ section {
     width: 178px;
     height: 178px;
     background: var(--black);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     color: var(--white);
@@ -2836,6 +2837,10 @@ section {
 @media (any-hover:hover) {
     .mouse {
         display: block
+    }
+
+    .mouse._cursor-drag,.mouse._open-mode {
+        display: flex
     }
 
     .projects__card--body:hover .projects__card--bg img,.projects__card--body:hover .projects__card--bg video {

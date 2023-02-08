@@ -120,7 +120,7 @@ function hover(hover, blur) {
 	videoOnHover.forEach(videoOnHover => {
 		let blurCheck = false;
 		videoOnHover.addEventListener('mouseenter', function () {
-			console.log('video')
+			//console.log('video')
 			
 			const video = 	videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
 
@@ -523,6 +523,10 @@ let passionImageSlider = new Swiper('.passion__image-slider', {
 	effect: "fade",
 	loop: true,
 	speed: sliderSpeed,
+
+	autoplay: {
+		delay: autoplayDelay,
+	},
 
 });
 
