@@ -18,6 +18,10 @@ progress,sub,sup {
     box-sizing: border-box
 }
 
+.btn::after,.header__nav--body::before,.header__social--link::before,.intro__bg::after,.intro__link::after,.intro__link::before,.projects__card--bg::after,.projects__card--video::after,.swiper-centered>.swiper-wrapper::before,.swiper-cube .swiper-cube-shadow:before,.swiper-virtual.swiper-css-mode .swiper-wrapper::after {
+    content: ""
+}
+
 .btn,.footer__header,.footer__nav--info-item,.header__nav--accent,.swiper-pagination,.swiper-zoom-container,.txt-center {
     text-align: center
 }
@@ -379,7 +383,6 @@ summary {
 }
 
 .swiper-centered>.swiper-wrapper::before {
-    content: "";
     flex-shrink: 0;
     order: 9999
 }
@@ -398,6 +401,10 @@ summary {
     height: 100%;
     min-height: 1px;
     width: var(--swiper-centered-offset-after)
+}
+
+.header__nav--body,.wrapper,body,html {
+    min-height: 100%
 }
 
 .swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
@@ -472,7 +479,6 @@ summary {
 }
 
 .swiper-virtual.swiper-css-mode .swiper-wrapper::after {
-    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -544,10 +550,6 @@ summary {
 
 .swiper-button-next:after,.swiper-rtl .swiper-button-prev:after {
     content: "next"
-}
-
-.btn::after,.header__nav--body::before,.header__social--link::before,.intro__bg::after,.intro__link::after,.intro__link::before,.projects__card--bg::after,.projects__card--video::after,.swiper-cube .swiper-cube-shadow:before {
-    content: ""
 }
 
 .swiper-pagination {
@@ -799,10 +801,6 @@ button.swiper-pagination-bullet {
     touch-action: none
 }
 
-.cursor-drag,.custom-cursor-open:hover {
-    cursor: none
-}
-
 .swiper .swiper-notification,swiper-container .swiper-notification {
     position: absolute;
     left: 0;
@@ -961,8 +959,7 @@ button.swiper-pagination-bullet {
 }
 
 body,html {
-    font-size: 16px;
-    min-height: 100%
+    font-size: 16px
 }
 
 body {
@@ -979,10 +976,6 @@ body {
 
 .btn,.words-to-lines>span,.words-to-lines>span>span {
     display: inline-block
-}
-
-.wrapper {
-    min-height: 100%
 }
 
 .main {
@@ -1069,6 +1062,10 @@ section {
 
 .btn._transform-to-link-plus::after {
     display: none
+}
+
+.custom-cursor-open:hover {
+    cursor: none
 }
 
 .section-header {
@@ -1160,8 +1157,6 @@ section {
     justify-content: center;
     border-radius: 50%;
     background: rgba(255,0,0,.55);
-    -webkit-backdrop-filter: invert(100%);
-    backdrop-filter: invert(100%);
     -webkit-transform: translate3d(-50%,-50%,0) scale(1);
     transform: translate3d(-50%,-50%,0) scale(1)
 }
@@ -1192,6 +1187,10 @@ section {
 .mouse._cursor-drag._down {
     -webkit-transform: translate3d(-50%,-50%,0) scale(.8);
     transform: translate3d(-50%,-50%,0) scale(.8)
+}
+
+.cursor-drag {
+    cursor: none
 }
 
 .preloader {
@@ -1359,8 +1358,7 @@ section {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--height-header) 40px 61px;
-    min-height: 100%
+    padding: var(--height-header) 40px 61px
 }
 
 .header__nav--body::before {
