@@ -526,6 +526,7 @@ let passionImageSlider = new Swiper('.passion__image-slider', {
 
 	autoplay: {
 		delay: autoplayDelay,
+		disableOnInteraction: false,
 	},
 
 });
@@ -543,6 +544,7 @@ let passionContentSlider = new Swiper('.passion__content-slider', {
 
 	autoplay: {
 		delay: autoplayDelay,
+		disableOnInteraction: false,
 	},
 
 	navigation: {
