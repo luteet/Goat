@@ -1,20 +1,62 @@
 .passion {
 
-	min-height: 625px;
-	@media (min-width: 425px) {
-		min-height: 825px;
-	}
-
 	display: flex;
 	flex-direction: column;
+
+	@media (min-width: 1105px) {
+		margin-top: -2px;
+	}
+
+	@media (min-width: 1285px) {
+		margin-top: 0;
+	}
 
 	// .passion__wrapper
 
 	&__wrapper {
 		display: flex;
 		flex-direction: column;
-		//position: relative;
+		position: relative;
+
+		min-height: 625px;
 		
+		padding-top: 110px; padding-bottom: 110px;
+		
+		@media (min-width: 425px) {
+			min-height: 823px;
+			padding-top: 110px; padding-bottom: 110px;
+		}
+		
+		@media (min-width: 475px) {
+			min-height: 823px;
+			padding-top: 125px; padding-bottom: 125px;
+		}
+		
+		@media (min-width: 605px) {
+			min-height: 825px;
+			padding-top: 150px; padding-bottom: 150px;
+		}
+		
+		@media (min-width: 895px) {
+			padding-top: 150px; padding-bottom: 150px;
+		}
+		
+		@media (min-width: 965px) {
+			padding-top: 137px; padding-bottom: 162px;
+		}
+		
+		@media (min-width: 1105px) {
+			padding-top: 137px; padding-bottom: 150px;
+		}
+		
+		@media (min-width: 1285px) {
+			padding-top: 137px; padding-bottom: 137px;
+		}
+		
+		@media (min-width: 1385px) {
+			padding-top: 137px; padding-bottom: 137px;
+		}
+
 		flex: 1 1 auto;
 	}
 
@@ -204,10 +246,12 @@
 
 		&--title {
 			color: var(--white);
-			max-width: 350px;
-			& span span {
-				white-space: nowrap;
+			max-width: 300px;
+			@media (min-width: 1105px) {
+				max-width: 350px;
 			}
+			line-height: 100.4%;
+			letter-spacing: -0.035em;
 		}
 	}
 

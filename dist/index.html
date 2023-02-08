@@ -74,7 +74,7 @@
     </header>
 
 	<main class="main">
-		<section class="intro section-container anim-section">
+		<section class="intro anim-section section-margin-bottom">
 			<div class="intro__bg video-auto-wrapper">
 				<video src="video/homepage_video.mp4" preload="auto" muted loop autoplay playsinline class="intro__bg--video video-auto-element anim-parallax-element" data-pos="to-bottom" data-anchor=".intro"></video>
 				<picture>
@@ -82,18 +82,20 @@
 					<img src="img/home/intro/poster.png" alt="" width="0" height="0" class="intro__bg--poster video-auto-poster" loading="lazy">
 				</picture>
 			</div>
-			<div class="intro__content">
-				<h1 class="intro__title main-title words-to-lines anim-element anim-text" data-index="1" data-stagger="0.07" data-delay="0.7" data-duration="0.7">
-					Full service marketing agency
-				</h1>
-				<div class="intro__text anim-element anim-fade-up" data-index="2" data-delay="0.5">
-					<p>
-						We create winning ideas to ignite the most
-						distinctive campaigns in world.
-					</p>
+			<div class="intro__container section-container">
+				<div class="intro__content">
+					<h1 class="intro__title main-title words-to-lines anim-element anim-text" data-index="1" data-stagger="0.07" data-delay="0.2" data-duration="0.7">
+						Full service marketing agency
+					</h1>
+					<div class="intro__text anim-element anim-fade-up" data-index="2" data-delay="0.5">
+						<p>
+							We create winning ideas to ignite the most
+							distinctive campaigns in world.
+						</p>
+					</div>
 				</div>
 			</div>
-			<div class="intro__footer anim-element anim-fade-in" data-index="3" data-delay="0.2">
+			<div class="intro__footer section-container _large anim-element anim-fade-in" data-index="3" data-delay="0.2">
 				<a href="#" class="intro__link">
 					Contact Us
 				</a>
@@ -214,8 +216,8 @@
 				</div>
 			</div>
 		</section>
-		<section class="passion section-padding section-container">
-			<div class="passion__wrapper">
+		<section class="passion section-padding">
+			<div class="passion__wrapper section-container">
 				<div class="passion__bg">
 					<picture>
 						<source srcset="img/home/passion/image.webp" type="image/webp">
@@ -469,13 +471,16 @@
 			</div>
 		</section>
 		<section class="lates-updates section-padding section-container anim-section">
-			<div class="lates-updates__header section-header anim-element anim-fade-up" data-index="1" data-delay="0.2">
-				<h2 class="lates-updates__section-name section-min-title">
+			<div class="lates-updates__header section-header _alt anim-element anim-fade-up" data-index="1" data-delay="0.2">
+				<h2 class="lates-updates__section-name section-min-title hide-on-mob">
 					Blog
 				</h2>
 				<h3 class="lates-updates__title title">
 					Latest <br> updates
 				</h3>
+				<a href="#" class="lates-updates__btn btn _transform-to-link-plus visible-on-mob">
+					View all
+				</a>
 			</div>
 			<div class="lates-updates__slider swiper anim-element anim-fade-in" data-index="2" data-delay="0.5">
 				<div class="lates-updates__slider--wrapper swiper-wrapper">
@@ -580,7 +585,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="lates-updates__footer anim-element anim-fade-up" data-index="3" data-delay="0.5">
+			<div class="lates-updates__footer hide-on-mob anim-element anim-fade-up" data-index="3" data-delay="0.5">
 				<a href="#" class="lates-updates__btn btn">
 					View all
 				</a>

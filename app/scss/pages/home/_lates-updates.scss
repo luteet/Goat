@@ -3,16 +3,25 @@
 	// .lates-updates__header
 
 	&__header {
+		flex-direction: column;
+		@media (min-width: 605px) {
+			flex-direction: row;
+		}
 	}
 
 	// .lates-updates__section-name
 
 	&__section-name {
+
 	}
 
 	// .lates-updates__title
 
 	&__title {
+		margin-top: 0 !important; margin-bottom: 17px;
+		@media (min-width: 605px) {
+			margin-bottom: 0px;
+		}
 	}
 
 	// .lates-updates__slider
@@ -174,7 +183,10 @@
 	}
 
 	&__footer {
-		padding-top: 97px;
+		padding-top: 80px;
+		@media (min-width: 1285px) {
+			padding-top: 97px;
+		}
 
 		display: flex;
 		justify-content: center;

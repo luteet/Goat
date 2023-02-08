@@ -32,7 +32,7 @@
 		font-size: 4.25rem;
 	}
 	
-	@media (min-width: 1105px) {
+	@media (min-width: 965px) {
 		font-size: 4.875rem;
 	}
 	
@@ -58,20 +58,27 @@
 	&._light {
 		color: #FFF;
 	}
-	
-	@media (min-width: 605px) {
+
+	@media (min-width: 475px) {
 		font-size: 3.25rem;
 	}
 	
-	@media (min-width: 1105px) {
+	@media (min-width: 605px) {
+		//font-size: 3.25rem;
 		font-size: 3.5rem;
 	}
 	
-	@media (min-width: 1285px) {
+	@media (min-width: 1105px) {
+		
 		font-size: 3.75rem;
 	}
 	
-	@media (min-width: 1445px) {
+	@media (min-width: 1285px) {
+		
+		font-size: 4rem;
+	}
+	
+	@media (min-width: 1385px) {
 		font-size: 4rem;
 	}
 }

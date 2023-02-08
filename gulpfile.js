@@ -54,6 +54,7 @@ function scriptsLib() {
         'node_modules/swiper/swiper-bundle.min.js', // Слайдер
         'node_modules/gsap/dist/gsap.min.js',
         'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js',
+        'node_modules/scroll-lock/dist/scroll-lock.min.js',
         //'node_modules/clipboard/dist/clipboard.min.js', // Копирование в буфер обмена
         //'node_modules/aos/dist/aos.js', // Анимация
         //'node_modules/slim-select/dist/slimselect.min.js', // Select

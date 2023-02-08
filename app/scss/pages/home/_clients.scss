@@ -15,6 +15,10 @@
 	// .clients__title
 
 	&__title {
+		//max-width: 500px;
+		@media (min-width: 475px) {
+			max-width: 500px;
+		}
 	}
 
 	&__wrapper {

@@ -17,6 +17,10 @@
 
 	&__title {
 		max-width: 300px;
+		margin-bottom: 17px;
+		@media (min-width: 605px) {
+			margin-bottom: 0;
+		}
 	}
 
 	// .projects__link
@@ -28,7 +32,7 @@
 
 	&__slider {
 
-		padding-top: 43px;
+		padding-top: 30px;
 		@media (min-width: 605px) {
 			padding-top: 66px;
 		}
@@ -46,7 +50,7 @@
 	}
 
 	&__slider &__card:nth-child(even) {
-		@media (min-width: 965px) {
+		@media (min-width: 1105px) {
 			padding-top: 30px;
 		}
 	}
@@ -66,7 +70,7 @@
 			width: 336px;
 		}
 		@media (min-width: 1285px) {
-			width: 350px;
+			width: 353px;
 		}
 
 		// .projects__card--body
@@ -81,10 +85,13 @@
 
 			overflow: hidden;
 
-			min-height: 120vw; width: 100%;
+			min-height: 112.5vw; width: 100%;
 			padding: 40px;
 			@media (min-width: 425px) {
 				padding: 45px;
+				min-height: 499px;
+			}
+			@media (min-width: 475px) {
 				min-height: 501px;
 			}
 			
@@ -188,7 +195,7 @@
 		&--text {
 			margin-top: 30px;
 
-			font-weight: 500;
+			font-weight: 400;
 			font-size: 1.375rem;
 			@media (min-width: 1285px) {
 				font-size: 1.5rem;
