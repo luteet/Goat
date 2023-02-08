@@ -1,0 +1,158 @@
+.clients {
+
+	overflow: hidden;
+
+	// .clients__header
+
+	&__header {
+	}
+
+	// .clients__section-name
+
+	&__section-name {
+	}
+
+	// .clients__title
+
+	&__title {
+	}
+
+	&__wrapper {
+		position: relative;
+		overflow: hidden;
+	}
+
+	// .clients__slider
+
+	&__slider {
+
+		overflow: visible;
+
+		// .clients__slider--wrapper
+
+		&--wrapper {
+		}
+
+		// .clients__slider--slide
+
+		&--slide {
+		}
+	}
+
+	// .clients__slide
+
+	&__slide {
+
+		height: auto;
+		
+		width: 75vw;
+
+		@media (min-width: 425px) {
+			width: 314px;
+		}
+		
+		@media (min-width: 475px) {
+			width: 336px;
+		}
+		
+		@media (min-width: 1285px) {
+			width: 353px;
+		}
+
+		// .clients__slide--body
+
+		&--body {
+			min-height: 409px;
+			background: var(--light);
+
+			position: relative;
+
+			padding: 32px 37px;
+
+			display: flex;
+			flex-direction: column;
+
+			//cursor: pointer;
+			
+		}
+
+		&--body._active &--logo {
+			opacity: 0; visibility: hidden;
+		}
+
+		&--body._active &--text {
+			opacity: 1; visibility: visible;
+			transform: translate3d(0,0,0);
+		}
+
+		&--body:hover &--toggle-btn {
+			& span {
+				&:first-child {
+					transform: translate3d(0,-100%,0);
+				}
+				&:last-child {
+					transform: translate3d(0,0%,0);
+				}
+			}
+		}
+
+		&--body._active &--toggle-btn {
+			& span svg {
+				transform: rotate(45deg);
+			}
+		}
+
+		// .clients__slide--content
+
+		&--content {
+			display: grid;
+			flex: 1 1 auto;
+			& > * {
+				grid-area: 1/1;
+				
+			}
+		}
+
+		// .clients__slide--logo
+
+		&--logo {
+			align-self: center;
+			justify-self: center;
+
+			opacity: 1; visibility: visible;
+			transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+		}
+
+		// .clients__slide--text
+
+		&--text {
+			font-size: 1.125rem;
+			line-height: 146.4%;
+
+			opacity: 0; visibility: hidden;
+			transform: translate3d(0,30px,0);
+			transition: opacity .2s ease-in-out, visibility .2s ease-in-out, transform .2s ease-in-out;
+		}
+
+		// .clients__slide--footer
+
+		&--footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		// .clients__slide--name
+
+		&--name {
+			font-size: 1.125rem;
+			line-height: 146.4%;
+		}
+
+		// .clients__slide--toggle-btn
+
+		&--toggle-btn {
+		}
+	}
+}
+

@@ -1,0 +1,20 @@
+.anim-fade-in, .anim-fade-up {
+	opacity: 0;
+}
+
+.words-to-lines {
+	&._init {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.words-line {
+	overflow: hidden;
+	display: block;
+}
+.words-line-element {
+	display: block;
+	transform: translate3d(0,100%,0);
+	opacity: 1;
+}

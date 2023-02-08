@@ -1,0 +1,32 @@
+
+:root {
+    --title-font: 'Axiforma', sans-serif;
+    --main-font: 'Axiforma', sans-serif;
+    
+    --accent: #FF0000;
+    --accent-gradient: linear-gradient(110.88deg, #FF4A0A -10.77%, #FFA107 162.13%);
+
+    --white: #FFF;
+    --black: #000;
+    --tomato: #EF6151;
+    --tomato-dark: #cf493a;
+    --light: #F1F1F1;
+
+    --container-padding: 15px;
+}
+
+@font-face {
+    @include font-include('Axiforma', 400, swap, normal, 'Axiforma-Regular');
+}
+
+@font-face {
+    @include font-include('Axiforma', 500, swap, normal, 'Axiforma-Medium');
+}
+
+@font-face {
+    @include font-include('Axiforma', 700, swap, normal, 'Axiforma-Bold');
+}
+
+@font-face {
+    @include font-include('Axiforma', 800, swap, normal, 'Axiforma-ExtraBold');
+}

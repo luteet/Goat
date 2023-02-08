@@ -1,0 +1,21 @@
+@import 'mixin';
+@import 'null';
+@import 'libs';
+@import 'vars';
+@import 'global';
+@import 'font';
+@import 'animate';
+
+@import 'main-sections/header';
+
+
+@import 'pages/home/intro';
+@import 'pages/home/projects';
+@import 'pages/home/partner';
+@import 'pages/home/passion';
+@import 'pages/home/clients';
+@import 'pages/home/who-we-are';
+@import 'pages/home/lates-updates';
+
+
+@import 'main-sections/footer';

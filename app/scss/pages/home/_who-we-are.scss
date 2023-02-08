@@ -1,0 +1,73 @@
+.who-we-are {
+
+    // .who-we-are__section-name
+
+    &__section-name {
+    }
+
+    // .who-we-are__text
+
+    &__text {
+        font-weight: 500;
+        font-size: 2.375rem;
+        margin-top: 32px;
+        @media (min-width: 385px) {
+            font-size: 2.625rem;
+            margin-top: 39px;
+        }
+        
+        @media (min-width: 425px) {
+            font-size: 2.9375rem;
+        }
+        
+        @media (min-width: 475px) {
+            font-size: 3.25rem;
+        }
+        
+        @media (min-width: 965px) {
+            font-size: 3.75rem;
+            margin-top: 37px;
+        }
+        
+        @media (min-width: 1105px) {
+            font-size: 4.25rem;
+        }
+        
+        @media (min-width: 1285px) {
+            font-size: 4.625rem;
+        }
+        & img {
+            object-fit: contain;
+            width: 10vw; height: 10vw;
+            @media (min-width: 385px) {
+                width: 50px; height: 50px;
+            }
+            
+            @media (min-width: 425px) {
+                width: 50px; height: 50px;
+            }
+            
+            @media (min-width: 475px) {
+                width: 50px; height: 50px;
+            }
+            
+            @media (min-width: 965px) {
+                width: 53px; height: 65px;   
+            }
+            
+            @media (min-width: 1105px) {
+                width: 65px; height: 65px;
+            }
+            
+            @media (min-width: 1285px) {
+                width: 75px; height: 71px;
+            }
+        }
+        line-height: 112.4%;
+        letter-spacing: -0.035em;
+        & mark {
+            color: #B0B0B0;
+            background: transparent;
+        }
+    }
+}
