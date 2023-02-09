@@ -98,14 +98,15 @@
 
 		& img {
 			position: absolute;
-			left: 0; top: -200px;
+			left: 0; top: -150px;
 			z-index: -1;
 			transform: translate3d(0, var(--y), 0);
-			width: 100%; height: calc(100% + 400px);
+			width: 100%; height: calc(100% + 300px);
 			object-position: right;
 
 			@media (min-width: 1000px) {
 				top: -200px;
+				height: calc(100% + 400px);
 				
 			}
 			object-fit: cover;

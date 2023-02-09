@@ -793,8 +793,8 @@ document.addEventListener('DOMContentLoaded', function () {
 						} */
 
 
-						if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight / 2)) {
-							let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 10;
+						if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight)) {
+							let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 7;
 							if (result >= parallaxElement.offsetHeight) result = parallaxElement.offsetHeight; else if (result <= -parallaxElement.offsetHeight) result = -parallaxElement.offsetHeight;
 		
 							parallaxElement.style.setProperty('--y', result  + 'px');

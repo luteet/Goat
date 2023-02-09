@@ -2137,12 +2137,12 @@ section {
 .passion__bg img {
     position: absolute;
     left: 0;
-    top: -200px;
+    top: -150px;
     z-index: -1;
     -webkit-transform: translate3d(0,var(--y),0);
     transform: translate3d(0,var(--y),0);
     width: 100%;
-    height: calc(100% + 400px);
+    height: calc(100% + 300px);
     -o-object-position: right;
     object-position: right;
     -o-object-fit: cover;
@@ -2151,7 +2151,8 @@ section {
 
 @media(min-width:1000px) {
     .passion__bg img {
-        top: -200px
+        top: -200px;
+        height: calc(100% + 400px)
     }
 }
 
