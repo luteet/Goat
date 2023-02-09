@@ -16,6 +16,10 @@
 		padding-top: calc(var(--height-header) + 35px); 
 	}
 
+	@media (min-width: 1000px) {
+		transition: min-height 0s ease-in-out;
+	}
+
 	@media (min-width: 1285px) {
 		padding-bottom: 42px;
 		padding-top: calc(var(--height-header) + 40px); 
@@ -26,7 +30,7 @@
 	}
    
 	min-height: var(--height-screen);
-	//transition: min-height 1s ease-in-out;
+	transition: min-height 1s ease-in-out;
 
 	display: flex;
 	flex-direction: column;

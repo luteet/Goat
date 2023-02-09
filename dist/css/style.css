@@ -1606,6 +1606,7 @@ section {
     padding-top: calc(var(--height-header) + 30px);
     padding-bottom: calc(var(--height-header) + 30px);
     min-height: var(--height-screen);
+    transition: min-height 1s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3198,6 +3199,12 @@ section {
 
     .footer__nav--block:first-child {
         padding-right: 60px
+    }
+}
+
+@media (min-width:1000px) {
+    .intro {
+        transition: min-height 0s ease-in-out
     }
 }
 
