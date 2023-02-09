@@ -1778,6 +1778,12 @@ section {
     }
 }
 
+@media(min-width:1000px) {
+    .projects__card {
+        width: calc(33% - 14px)
+    }
+}
+
 @media(min-width:1285px) {
     .intro__link::before {
         -webkit-transform: translate(55%,0);
@@ -1808,8 +1814,14 @@ section {
 
 @media(min-width:425px) {
     .projects__card--body {
-        padding: 45px;
         min-height: 499px
+    }
+}
+
+@media(min-width:475px) {
+    .projects__card--body {
+        min-height: 501px;
+        padding: 45px
     }
 }
 
@@ -1948,10 +1960,6 @@ section {
 }
 
 @media(min-width:475px) {
-    .projects__card--body {
-        min-height: 501px
-    }
-
     .partner__title.title {
         font-size: 3.5rem
     }
@@ -2372,6 +2380,12 @@ section {
     }
 }
 
+@media(min-width:1000px) {
+    .clients__slide {
+        width: calc(33% - 14px)
+    }
+}
+
 .clients__slide--body {
     min-height: 409px;
     background: var(--light);
@@ -2600,6 +2614,12 @@ section {
 @media(min-width:425px) {
     .lates-updates__slide {
         width: 336px
+    }
+}
+
+@media(min-width:1000px) {
+    .lates-updates__slide {
+        width: calc(33% - 14px)
     }
 }
 
@@ -2968,12 +2988,13 @@ section {
         font-size: 3.5rem
     }
 
-    .header__nav--accent-btn,.intro__link {
-        font-size: .875rem
-    }
-
     .header__nav--body {
         padding: var(--height-header) 70px 61px
+    }
+
+    .header__nav--accent-btn {
+        font-size: .875rem;
+        padding: 17px 26px
     }
 
     .intro {
@@ -2988,6 +3009,10 @@ section {
     .intro__footer {
         position: static;
         justify-content: flex-end
+    }
+
+    .intro__link {
+        font-size: .875rem
     }
 
     .footer {
@@ -3202,12 +3227,6 @@ section {
     }
 }
 
-@media (min-width:1000px) {
-    .intro {
-        transition: min-height 0s ease-in-out
-    }
-}
-
 @media (min-width:1105px) {
     .main,.section-padding {
         padding-bottom: 110px
@@ -3307,7 +3326,7 @@ section {
 
     .intro {
         padding-bottom: 42px;
-        padding-top: calc(var(--height-header) + 40px)
+        padding-top: calc(var(--height-header) + 0px)
     }
 
     .intro__container {

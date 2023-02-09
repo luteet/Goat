@@ -69,6 +69,9 @@
 		@media (min-width: 425px) {
 			width: 336px;
 		}
+		@media (min-width: 1000px) {
+			width: calc(33% - 14px);
+		}
 		@media (min-width: 1285px) {
 			width: 353px;
 		}
@@ -88,11 +91,11 @@
 			min-height: 112.5vw; width: 100%;
 			padding: 40px;
 			@media (min-width: 425px) {
-				padding: 45px;
 				min-height: 499px;
 			}
 			@media (min-width: 475px) {
 				min-height: 501px;
+				padding: 45px;
 			}
 			
 		}

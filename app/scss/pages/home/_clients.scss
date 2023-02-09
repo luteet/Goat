@@ -58,6 +58,10 @@
 		@media (min-width: 475px) {
 			width: 336px;
 		}
+
+		@media (min-width: 1000px) {
+			width: calc(33% - 14px);
+		}
 		
 		@media (min-width: 1285px) {
 			width: 353px;

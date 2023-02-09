@@ -16,13 +16,9 @@
 		padding-top: calc(var(--height-header) + 35px); 
 	}
 
-	@media (min-width: 1000px) {
-		transition: min-height 0s ease-in-out;
-	}
-
 	@media (min-width: 1285px) {
 		padding-bottom: 42px;
-		padding-top: calc(var(--height-header) + 40px); 
+		padding-top: calc(var(--height-header) + 0px); 
 	}
 	
 	@media (min-width: 1385px) {
