@@ -18,10 +18,6 @@ progress,sub,sup {
     visibility: hidden
 }
 
-.btn,.footer__header,.footer__nav--info-item,.header__nav--accent,.intro__text,.intro__title,.swiper-pagination,.swiper-zoom-container,.txt-center {
-    text-align: center
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -280,6 +276,10 @@ summary {
     transition-property: transform;
     transition-property: transform,-webkit-transform;
     display: block
+}
+
+.swiper-button-lock,.swiper-pagination-lock {
+    display: none
 }
 
 .swiper-autoheight,.swiper-autoheight .swiper-slide {
@@ -542,12 +542,9 @@ summary {
     content: "next"
 }
 
-.swiper-button-lock {
-    display: none
-}
-
 .swiper-pagination {
     position: absolute;
+    text-align: center;
     transition: .3s opacity;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
@@ -626,6 +623,10 @@ button.swiper-pagination-bullet {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none
+}
+
+.swiper-scrollbar,.swiper-scrollbar-drag {
+    border-radius: var(--swiper-scrollbar-border-radius,10px)
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
@@ -730,12 +731,7 @@ button.swiper-pagination-bullet {
     top: 0
 }
 
-.swiper-pagination-lock {
-    display: none
-}
-
 .swiper-scrollbar {
-    border-radius: var(--swiper-scrollbar-border-radius,10px);
     position: relative;
     -ms-touch-action: none;
     background: var(--swiper-scrollbar-bg-color,rgba(0,0,0,.1))
@@ -770,7 +766,6 @@ button.swiper-pagination-bullet {
     width: 100%;
     position: relative;
     background: var(--swiper-scrollbar-drag-bg-color,rgba(0,0,0,.5));
-    border-radius: var(--swiper-scrollbar-border-radius,10px);
     left: 0;
     top: 0
 }
@@ -788,7 +783,8 @@ button.swiper-pagination-bullet {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    text-align: center
 }
 
 .swiper-zoom-container>canvas,.swiper-zoom-container>img,.swiper-zoom-container>svg {
@@ -822,6 +818,10 @@ button.swiper-pagination-bullet {
 
 .swiper-grid-column>.swiper-wrapper {
     flex-wrap: wrap;
+    flex-direction: column
+}
+
+.toggle-btn,.words-to-lines._init,body {
     flex-direction: column
 }
 
@@ -967,15 +967,18 @@ body {
     font-weight: 400;
     line-height: 150%;
     display: flex;
-    flex-direction: column;
     overflow: hidden
+}
+
+.btn,.words-to-lines>span,.words-to-lines>span>span {
+    display: inline-block
 }
 
 body._overflow-visible {
     overflow: visible
 }
 
-.main,.toggle-btn,.words-line,.words-to-lines>span,body._active,body._popup-active {
+.header__burger,.intro__bg,.main,.toggle-btn,.words-line,.words-to-lines>span,body._active,body._popup-active {
     overflow: hidden
 }
 
@@ -1003,6 +1006,14 @@ section {
     background: var(--white)
 }
 
+.bg-img,.btn::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0
+}
+
 .section-padding {
     padding-top: 74px;
     padding-bottom: 74px
@@ -1013,11 +1024,6 @@ section {
 }
 
 .bg-img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1032,7 +1038,7 @@ section {
 }
 
 .btn {
-    display: inline-block;
+    text-align: center;
     padding: 17px 26px;
     font-size: .875rem;
     line-height: 100%;
@@ -1048,11 +1054,6 @@ section {
 
 .btn::after {
     content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
     border: 2px solid transparent;
     border-radius: 50px;
     background: var(--accent-gradient) border-box;
@@ -1096,12 +1097,6 @@ section {
     margin-bottom: 56px
 }
 
-.toggle-btn,.toggle-btn span {
-    display: flex;
-    width: 27px;
-    height: 27px
-}
-
 .section-header._alt {
     margin-bottom: 30px
 }
@@ -1111,8 +1106,10 @@ section {
 }
 
 .toggle-btn {
-    flex-direction: column;
+    display: flex;
     align-items: center;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
     background: var(--light)
 }
@@ -1123,7 +1120,10 @@ section {
 }
 
 .toggle-btn span {
+    display: flex;
     justify-content: center;
+    width: 27px;
+    height: 27px;
     position: absolute;
     left: 0;
     top: 0;
@@ -1270,10 +1270,6 @@ section {
     justify-content: center
 }
 
-.words-to-lines>span,.words-to-lines>span>span {
-    display: inline-block
-}
-
 .preloader._active .preloader__element {
     opacity: 1
 }
@@ -1344,13 +1340,16 @@ section {
     font-weight: 700
 }
 
+.txt-center {
+    text-align: center
+}
+
 .anim-fade-in,.anim-fade-up {
     opacity: 0
 }
 
 .words-to-lines._init {
     display: flex;
-    flex-direction: column;
     align-items: flex-start
 }
 
@@ -1492,6 +1491,7 @@ section {
 }
 
 .header__nav--accent {
+    text-align: center;
     align-self: flex-end;
     flex: 1 1 100%
 }
@@ -1561,7 +1561,6 @@ section {
     width: 26px;
     height: 22px;
     background: rgba(0,0,0,0);
-    overflow: hidden;
     z-index: 10;
     cursor: pointer;
     display: inline-block
@@ -1609,7 +1608,7 @@ section {
 }
 
 .intro {
-    padding-top: calc(var(--height-header) + 40px);
+    padding-top: calc(var(--height-header) + 61px);
     padding-bottom: calc(var(--height-header) + 40px);
     min-height: 750px;
     min-height: max(750px,var(--height-screen-start));
@@ -1623,7 +1622,6 @@ section {
     top: 0;
     width: 100%;
     z-index: -1;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center
@@ -1649,22 +1647,12 @@ section {
 }
 
 .intro__content {
-    max-width: 400px;
-    margin: 0 auto
-}
-
-.intro__title {
-    align-items: center!important
-}
-
-.intro__title .words-line {
-    margin-left: var(--space-width)
+    max-width: 400px
 }
 
 .intro__text {
     font-size: .875rem;
     max-width: 400px;
-    margin: 0 auto;
     line-height: 146.4%;
     padding-top: 15px;
     color: rgba(255,255,255,.62)
@@ -2851,7 +2839,8 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column
+    flex-direction: column;
+    text-align: center
 }
 
 .footer__title {
@@ -2900,6 +2889,7 @@ section {
 
 .footer__nav--info-item {
     flex: 1 1 100%;
+    text-align: center;
     padding: 17.5px 12px;
     max-width: 300px;
     font-style: normal
@@ -2980,7 +2970,7 @@ section {
     }
 
     .intro {
-        padding-top: calc(var(--height-header) + 40px);
+        padding-top: calc(var(--height-header) + 61px);
         padding-bottom: calc(var(--height-header) + 40px)
     }
 
@@ -3093,7 +3083,7 @@ section {
     }
 
     .intro {
-        padding-top: calc(var(--height-header) + 40px);
+        padding-top: calc(var(--height-header) + 61px);
         padding-bottom: calc(var(--height-header) + 40px)
     }
 
@@ -3303,7 +3293,7 @@ section {
 
     .intro {
         padding-bottom: calc(var(--height-header) + 15px);
-        padding-top: calc(var(--height-header) + 15px)
+        padding-top: calc(var(--height-header) + 68px)
     }
 
     .intro__text {
@@ -3361,6 +3351,10 @@ section {
 
     .title {
         font-size: 3.75rem
+    }
+
+    .intro {
+        padding-top: calc(var(--height-header) + 75px)
     }
 
     .intro__content {
@@ -3426,8 +3420,7 @@ section {
     }
 
     .intro {
-        padding-bottom: calc(var(--height-header) + 0px);
-        padding-top: calc(var(--height-header) + 0px)
+        padding-bottom: calc(var(--height-header) + 0px)
     }
 
     .intro__container {

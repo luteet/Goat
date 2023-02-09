@@ -1,10 +1,10 @@
 .intro {
 
-	padding-top: calc(var(--height-header) + 40px); 
+	padding-top: calc(var(--height-header) + 61px);
 	padding-bottom: calc(var(--height-header) + 40px);
 
 	@media (min-width: 475px) {
-		padding-top: calc(var(--height-header) + 40px); 
+		padding-top: calc(var(--height-header) + 61px); 
 		padding-bottom: calc(var(--height-header) + 40px);
 	}
 
@@ -16,11 +16,9 @@
 	}
 
 	@media (min-width: 605px) {
-		padding-top: calc(var(--height-header) + 40px);
+		padding-top: calc(var(--height-header) + 61px);
 		padding-bottom: calc(var(--height-header) + 40px);
 	}
-
-	
 
 	@media (min-width: 960px) {
 		min-height: max(570px, var(--height-screen-start));
@@ -28,14 +26,15 @@
 
 	@media (min-width: 965px) {
 		padding-bottom: calc(var(--height-header) + 15px); 
-		padding-top: calc(var(--height-header) + 15px); 
+		padding-top: calc(var(--height-header) + 68px); 
 	}
 
-	
+	@media (min-width: 1105px) {
+		padding-top: calc(var(--height-header) + 75px);
+	}
 
 	@media (min-width: 1285px) {
 		padding-bottom: calc(var(--height-header) + 0px);
-		padding-top: calc(var(--height-header) + 0px); 
 	}
 
 	@media (min-width: 1300px) {
@@ -130,18 +129,12 @@
 		@media (min-width: 1105px) {
 			max-width: 700px;
 		}
-		margin: 0 auto;
 		
 	}
 
 	// .intro__title
 
 	&__title {
-		align-items: center !important;
-		text-align: center;
-		& .words-line {
-			margin-left: var(--space-width);
-		}
 	}
 
 	// .intro__text
@@ -149,8 +142,6 @@
 	&__text {
 		font-size: 0.875rem;
 		max-width: 400px;
-		margin: 0 auto;
-		text-align: center;
 		
 		@media (min-width: 425px) {
 			font-size: 1rem;
