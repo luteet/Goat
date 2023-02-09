@@ -1,8 +1,8 @@
 .intro {
 
-	padding-top: calc(var(--height-header) + 30px); 
+	padding-top: calc(var(--height-header) + 40px); 
+	padding-bottom: calc(var(--height-header) + 40px);
 
-	padding-bottom: calc(var(--height-header) + 30px);
 	@media (min-width: 475px) {
 		padding-top: calc(var(--height-header) + 40px); 
 		padding-bottom: calc(var(--height-header) + 40px);
@@ -12,19 +12,15 @@
 		padding-bottom: calc(var(--height-header) + 40px);
 	}
 	@media (min-width: 965px) {
-		padding-bottom: 40px;
-		padding-top: calc(var(--height-header) + 35px); 
+		padding-bottom: calc(var(--height-header) + 15px); 
+		padding-top: calc(var(--height-header) + 15px); 
 	}
 
 	@media (min-width: 1285px) {
-		padding-bottom: 42px;
+		padding-bottom: calc(var(--height-header) + 0px);
 		padding-top: calc(var(--height-header) + 0px); 
 	}
-	
-	@media (min-width: 1385px) {
-		padding-top: calc(var(--height-header) + 0px); 
-	}
-   
+
 	min-height: var(--height-screen-start);
 
 	display: flex;
@@ -163,7 +159,6 @@
 		left: 0; bottom: 45px;
 		width: 100%;
 		@media (min-width: 605px) {
-			position: static;
 			justify-content: flex-end;
 		}
 		align-items: flex-end;
