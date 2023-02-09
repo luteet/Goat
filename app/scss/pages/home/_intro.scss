@@ -29,8 +29,7 @@
 		padding-top: calc(var(--height-header) + 0px); 
 	}
    
-	min-height: var(--height-screen);
-	transition: min-height 1s ease-in-out;
+	min-height: var(--height-screen-start);
 
 	display: flex;
 	flex-direction: column;

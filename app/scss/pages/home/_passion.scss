@@ -97,15 +97,15 @@
 		}
 
 		& img {
-			position: fixed;
-			left: 0; top: 0;
+			position: absolute;
+			left: 0; top: -200px;
 			z-index: -1;
-			//transform: translate3d(0, var(--y), 0);
-			width: 100%; height: calc(100vh + 50px);
+			transform: translate3d(0, var(--y), 0);
+			width: 100%; height: calc(100% + 400px);
+			object-position: right;
 
 			@media (min-width: 1000px) {
-				position: absolute;
-				top: -25px;
+				top: -200px;
 				
 			}
 			object-fit: cover;

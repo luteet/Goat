@@ -491,6 +491,7 @@ const preloader = document.querySelector('.preloader'),
 
 const videoLazyLoading = document.querySelectorAll('.video-lazy-loading');
 
+html.style.setProperty("--height-screen-start", window.innerHeight + "px");
 html.style.setProperty("--height-screen", window.innerHeight + "px");
 html.style.setProperty("--height-header", header.offsetHeight + "px");
 
@@ -783,12 +784,25 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 					} else {
 						
-						/* if (document.querySelector(parallaxElement.dataset.anchor).offsetTop > scrollPositionY - window.innerHeight) {
-							
+						const parallaxElementAnchor = document.querySelector(parallaxElement.dataset.anchor);
+						/* if (parallaxElementAnchor.offsetTop < scrollPositionY + window.innerHeight && parallaxElementAnchor.offsetTop + window.innerHeight > scrollPositionY) {
+							//console.log((scrollPositionY) + ' ' + (parallaxElementAnchor.offsetTop + window.innerHeight))
+							let result = (parallaxElementAnchor.offsetTop + window.innerHeight - scrollPositionY) / 5;
+							console.log(-result);
+							parallaxElement.style.setProperty('--y', -result  + 'px');
 						} */
+
+
+						if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight / 2)) {
+							let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 10;
+							if (result >= parallaxElement.offsetHeight) result = parallaxElement.offsetHeight; else if (result <= -parallaxElement.offsetHeight) result = -parallaxElement.offsetHeight;
+		
+							parallaxElement.style.setProperty('--y', result  + 'px');
+							//scrollImage.style.transform = `translate3d(0,${result}px,0)`;
+						}
 						//console.log(document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect())
 						//let result = scrollPositionY - document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - (window.innerHeight * 4);
-							parallaxElement.style.setProperty('--y', -document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - header.offsetHeight + 'px');
+						//parallaxElement.style.setProperty('--y', -document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - header.offsetHeight + 'px');
 					}
 	
 				})

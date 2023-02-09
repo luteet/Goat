@@ -1006,10 +1006,6 @@ section {
     top: 0
 }
 
-.btn,.header__burger {
-    background: rgba(0,0,0,0)
-}
-
 .section-padding {
     padding-top: 74px;
     padding-bottom: 74px
@@ -1035,6 +1031,7 @@ section {
     font-size: .875rem;
     line-height: 100%;
     position: relative;
+    background: rgba(0,0,0,0);
     color: var(--black);
     border-radius: 5px;
     transition: color .2s ease-in-out,background .2s ease-in-out
@@ -1360,7 +1357,7 @@ section {
     left: -50%;
     bottom: 10%;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: var(--white);
     -webkit-transform: scale(0,1);
     transform: scale(0,1)
@@ -1446,7 +1443,7 @@ section {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--height-header) 40px 61px
+    padding: var(--height-header) 40px 52px
 }
 
 .header__nav--body::before {
@@ -1493,8 +1490,9 @@ section {
 }
 
 .header__nav--accent-btn {
-    font-size: 1.125rem;
-    width: 100%
+    font-size: .875rem;
+    width: 100%;
+    padding: 22px 26px
 }
 
 .header__nav--social {
@@ -1555,6 +1553,7 @@ section {
     position: relative;
     width: 26px;
     height: 22px;
+    background: rgba(0,0,0,0);
     z-index: 10;
     cursor: pointer;
     display: inline-block
@@ -1598,15 +1597,14 @@ section {
 .intro__bg,.intro__bg--poster,.intro__bg::after {
     top: 0;
     height: 100%;
-    position: absolute;
+    left: 0;
     width: 100%
 }
 
 .intro {
     padding-top: calc(var(--height-header) + 30px);
     padding-bottom: calc(var(--height-header) + 30px);
-    min-height: var(--height-screen);
-    transition: min-height 1s ease-in-out;
+    min-height: var(--height-screen-start);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1614,7 +1612,7 @@ section {
 }
 
 .intro__bg {
-    left: 0;
+    position: absolute;
     z-index: -1;
     display: flex;
     align-items: center;
@@ -1623,7 +1621,7 @@ section {
 
 .intro__bg::after {
     content: "";
-    left: 0;
+    position: absolute;
     background: rgba(0,0,0,.41)
 }
 
@@ -1633,7 +1631,7 @@ section {
 }
 
 .intro__bg--poster {
-    left: 0;
+    position: absolute;
     -o-object-fit: cover;
     object-fit: cover
 }
@@ -1933,13 +1931,6 @@ section {
     width: calc(100% - var(--space-width,0px))!important
 }
 
-.passion__bg,.passion__bg--element {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%
-}
-
 .partner {
     display: flex;
     flex-wrap: wrap
@@ -2030,6 +2021,14 @@ section {
     flex: 1 1 auto
 }
 
+.passion__bg,.passion__bg--element {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
 @media(min-width:425px) {
     .passion__wrapper {
         min-height: 823px;
@@ -2102,12 +2101,10 @@ section {
 }
 
 .passion__bg {
-    position: absolute;
     z-index: -1
 }
 
 .passion__bg--element {
-    position: absolute;
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -2124,6 +2121,7 @@ section {
 }
 
 .passion__bg::after,.passion__image-slider {
+    position: absolute;
     top: 0;
     background: var(--black);
     width: 100%;
@@ -2132,31 +2130,32 @@ section {
 
 .passion__bg::after {
     content: "";
-    position: absolute;
     height: 100%;
     opacity: .5
 }
 
 .passion__bg img {
-    position: fixed;
+    position: absolute;
     left: 0;
-    top: 0;
+    top: -200px;
     z-index: -1;
+    -webkit-transform: translate3d(0,var(--y),0);
+    transform: translate3d(0,var(--y),0);
     width: 100%;
-    height: calc(100vh + 50px);
+    height: calc(100% + 400px);
+    -o-object-position: right;
+    object-position: right;
     -o-object-fit: cover;
     object-fit: cover
 }
 
 @media(min-width:1000px) {
     .passion__bg img {
-        position: absolute;
-        top: -25px
+        top: -200px
     }
 }
 
 .passion__image-slider {
-    position: absolute;
     height: 100%
 }
 
@@ -2939,7 +2938,7 @@ section {
 
     .btn._transform-to-link-plus {
         font-size: .875rem;
-        padding: 13.8px 26px;
+        padding: 17px 26px;
         color: var(--black);
         background: rgba(0,0,0,0)
     }
