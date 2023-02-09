@@ -199,13 +199,6 @@ function wordsToLines() {
 			Array.from(textResult).forEach((textElement, index) => {
 
 				if (!activeTag) {
-					/* textResult[index] = `<span>${textElement}&nbsp;</span>`;
-					if(textElement.includes('</mark>')) {
-						elements[count] += textResult[index];
-						activeTag = false;
-						delete textResult[index];
-						textResult[index] = `${elements[count]}`;
-					} */
 					textResult[index] = `<span>${textElement}&nbsp;</span>`;
 
 				} else if (activeTag && typeTag == 'mark') {
@@ -357,14 +350,26 @@ function wordsToLines() {
 				lineSpan.classList.add('words-line');
 				lineDecor.classList.add('words-decor-line');
 				lineSpanWrapper.classList.add('words-line-element');
+
 				for (let index = 0; index < textSpan.length; index++) {
 					lineSpanWrapper.append(textSpan[index])
 				}
 
 				lineSpan.append(lineSpanWrapper)
 				lineSpan.append(lineDecor);
+
+				const widthSpace = document.createElement('span');
+				widthSpace.style.position = 'absolute';
+				widthSpace.style.display = 'inline-block';
+				widthSpace.style.pointerEvents = 'none';
+				widthSpace.innerHTML = '&nbsp;';
+				
 				placeContent.append(lineSpan)
-				//text.insertAdjacentHTML("beforeend", `<span><span>${textSpan}</span></span>`);
+				placeContent.append(widthSpace)
+
+				placeContent.style.setProperty('--space-width', widthSpace.offsetWidth + 'px');
+				widthSpace.remove();
+				
 			})
 			placeContent.classList.add('_init');
 		})

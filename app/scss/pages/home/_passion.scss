@@ -266,12 +266,6 @@
 
 		display: flex;
 		flex-direction: column;
-		/* opacity: 0; visibility: hidden;
-		&.swiper-slide-visible {
-			opacity: 1; visibility: visible;
-		}
-
-		transition: opacity .2s ease-in-out, visibility .2s ease-in-out; */
 
 		// .passion__content-slide--title
 
@@ -281,6 +275,35 @@
 			&._large-container {
 				max-width: 450px;
 			} */
+			max-width: 100%;
+			
+			@media (min-width: 425px) {
+				max-width: 270px;
+				&._large-container {
+					max-width: 370px;
+				}
+			}
+			
+			@media (min-width: 475px) {
+				max-width: 300px;
+				&._large-container {
+					max-width: 400px;
+				}
+			}
+			
+			@media (min-width: 605px) {
+				max-width: 320px;
+				&._large-container {
+					max-width: 450px;
+				}
+			}
+			
+			@media (min-width: 892px) {
+				max-width: 320px;
+				&._large-container {
+					max-width: 450px;
+				}
+			}
 			@media (min-width: 965px) {
 				max-width: 350px;
 				&._large-container {

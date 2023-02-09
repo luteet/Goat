@@ -7,6 +7,12 @@
 		@media (min-width: 605px) {
 			flex-direction: row;
 		}
+		& > *:nth-child(2) {
+			margin-top: 0;
+			@media (min-width: 605px) {
+				margin-top: 39px;
+			}
+		}
 	}
 
 	// .lates-updates__section-name
@@ -18,9 +24,11 @@
 	// .lates-updates__title
 
 	&__title {
-		margin-top: 0 !important; margin-bottom: 17px;
+		margin-bottom: 17px;
+		margin-top: 0;
 		@media (min-width: 605px) {
 			margin-bottom: 0px;
+			//margin-top: 0 !important;
 		}
 	}
 

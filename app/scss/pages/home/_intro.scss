@@ -42,8 +42,6 @@
 		min-height: max(700px, var(--height-screen-start));
 	}
 
-	
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -132,12 +130,18 @@
 		@media (min-width: 1105px) {
 			max-width: 700px;
 		}
+		margin: 0 auto;
 		
 	}
 
 	// .intro__title
 
 	&__title {
+		align-items: center !important;
+		text-align: center;
+		& .words-line {
+			margin-left: var(--space-width);
+		}
 	}
 
 	// .intro__text
@@ -145,6 +149,8 @@
 	&__text {
 		font-size: 0.875rem;
 		max-width: 400px;
+		margin: 0 auto;
+		text-align: center;
 		
 		@media (min-width: 425px) {
 			font-size: 1rem;
