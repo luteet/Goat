@@ -2977,8 +2977,8 @@ section {
     }
 
     .intro {
-        padding-top: calc(var(--height-header) + 10px);
-        padding-bottom: calc(var(--height-header) + 10px)
+        padding-top: calc(var(--height-header) + 40px);
+        padding-bottom: calc(var(--height-header) + 40px)
     }
 
     .intro__content {
