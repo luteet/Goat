@@ -861,21 +861,33 @@ document.addEventListener('DOMContentLoaded', function () {
 			const animateDecorLines = document.querySelectorAll('.animate-decor-lines');
 			animateDecorLines.forEach(animateDecorLine => {
 
-				const lines = animateDecorLine.querySelectorAll('.words-decor-line');
+				const lines = animateDecorLine.querySelectorAll('.words-decor-line'),
+				spaceSpan = document.createElement('span');
+				spaceSpan.innerHTML = '&nbsp;';
+				spaceSpan.style.display = 'inline-block';
+				spaceSpan.style.position = 'absolute';
+				spaceSpan.style.pointerEvents = 'none';
+
+				animateDecorLine.append(spaceSpan)
+
+				const spaceWidth = spaceSpan.offsetWidth;
+
+				spaceSpan.remove();
+				animateDecorLine.style.setProperty('--space-width', spaceWidth + 'px');
 
 				animateDecorLine.addEventListener('mouseenter', function () {
 					gsap.to(lines, {
 						transform: 'scale(2,1)',
-						//duration: 0.5,
-						stagger: 0.1,
+						duration: 0.5,
+						stagger: 0.2,
 					})
 				})
 
 				animateDecorLine.addEventListener('mouseleave', function () {
 					gsap.to(lines, {
 						transform: 'scale(0,1)',
-						//duration: 0.5,
-						stagger: 0.1,
+						duration: 0.5,
+						stagger: 0.2,
 					})
 				})
 			})
@@ -893,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 
 
-			let sliderSpeed = 1500, autoplayDelay = 4000;
+			let sliderSpeed = 500, autoplayDelay = 4000;
 
 			const passionTimer = document.querySelectorAll('.passion__timer');
 
@@ -951,28 +963,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							animateTitle = activeSlide.querySelector('.animate-title'),
 							proggresTimer = document.querySelector('.passion__timer._slide-change');
 							
-							const 
-							prevSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-prev'),
-							animateTitlePrev = prevSlide.querySelector('.animate-title');
-							if(animateTitlePrev) {
-								const lines = animateTitlePrev.querySelectorAll('.words-line-element');
-								gsap.to(lines, {
-									transform: 'translate3d(0,100%,0)',
-									opacity: 1,
-									duration: 0,
-									stagger: 0,
-								})
-							}
-
-							if(animateTitle) {
-								const lines = animateTitle.querySelectorAll('.words-line-element');
-								gsap.to(lines, {
-									transform: 'translate3d(0,0,0)',
-									opacity: 1,
-									duration: 0.5,
-									stagger: 0.07,
-								})
-							}
+							
 
 							if (proggresTimer) {
 								proggresTimer.classList.remove('_slide-change');
@@ -991,7 +982,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
 						},
 						slideChangeTransitionStart: function () {
-							
+							const 
+							activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
+							animateTitle = activeSlide.querySelector('.animate-title');
+
+							setTimeout(() => {
+								const 
+								prevSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-prev'),
+								animateTitlePrev = prevSlide.querySelector('.animate-title');
+								if(animateTitlePrev) {
+									const lines = animateTitlePrev.querySelectorAll('.words-line-element');
+									gsap.to(lines, {
+										transform: 'translate3d(0,50%,0)',
+										opacity: 1,
+										duration: 0,
+										stagger: 0,
+									})
+								}
+							},500)
+
+							if(animateTitle) {
+								const lines = animateTitle.querySelectorAll('.words-line-element');
+								gsap.to(lines, {
+									transform: 'translate3d(0,0,0)',
+									opacity: 1,
+									duration: 0.5,
+									stagger: 0.07,
+								})
+							}
 						}
 					}
 
@@ -1029,6 +1047,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </Animation> -=-=-=-=-=-=-=-=-=-=-=-=
+
 
 
 

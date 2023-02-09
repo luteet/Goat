@@ -208,6 +208,11 @@
 			& .words-line-element {
 				transform: translate3d(0,0,0);
 				opacity: 1;
+				
+			}
+
+			& .words-decor-line {
+				width: calc(100% - var(--space-width, 0px)) !important;
 			}
 
 			/* & .underline-text-element {

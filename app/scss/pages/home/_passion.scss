@@ -247,9 +247,18 @@
 
 		&--title {
 			color: var(--white);
-			max-width: 300px;
+			max-width: 270px;
+			@media (min-width: 475px) {
+				max-width: 350px;
+			}
 			@media (min-width: 1105px) {
 				max-width: 370px;
+			}
+			& .words-line-element {
+				transform: translate3d(0,50%,0);
+			}
+			& .words-line {
+				overflow: visible;
 			}
 			line-height: 100.4%;
 			letter-spacing: -0.035em;
