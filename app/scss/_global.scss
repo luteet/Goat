@@ -13,6 +13,11 @@ body {
 	display: flex;
 	flex-direction: column;
 
+	overflow: hidden;
+	&._overflow-visible {
+		overflow: visible;
+	}
+
 	//background: var(--black);
 
 	//padding-right: var(--popup-padding);
@@ -275,8 +280,8 @@ section {
 	}
 
 	&._transform-to-link-plus {
-		display: inline-flex;
-		align-items: center;
+		display: block;
+		text-align: left;
 		&::before {
 			content: '+';
 			margin-right: 15px;
@@ -289,8 +294,10 @@ section {
 		color: transparent;
 		background: var(--accent-gradient);
 		background-clip: text;
+		-webkit-box-decoration-break: clone;
 		padding: 13.8px 0;
 		font-size: 1rem;
+		
 		@media (min-width: 605px) {
 			font-size: 0.875rem;
 			padding: 13.8px 26px;
@@ -309,8 +316,6 @@ section {
 
 	transition: color .2s ease-in-out, background .2s ease-in-out;
 }
-
-
 
 .custom-cursor-open:hover {
 	cursor: none;
@@ -433,7 +438,7 @@ section {
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
-		background: rgba(255, 0, 0, 0.55);
+		background: #D54635;
 		transform: translate3d(-50%,-50%,0) scale(1);
 
 		&._down {
@@ -484,11 +489,10 @@ section {
 	}
 }
 
-
 .preloader {
 	position: fixed;
 	left: 0; top: 0;
-	width: 100vw; height: 100vh;
+	width: 100vw; height: var(--height-screen, 100vh);
 	background: var(--black);
 	z-index: 1000;
 
@@ -533,3 +537,11 @@ section {
 	}
 }
 
+.scrollbar-track {
+	width: 5px !important;
+	background: transparent !important;
+}
+
+.scrollbar-thumb {
+	background: #000 !important;
+}

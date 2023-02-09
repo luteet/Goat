@@ -6,10 +6,23 @@
 	&._init {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
+	}
+	&._resized .words-line-element {
+		transform: translate3d(0,0%,0);	
+	}
+
+	&._decor-line .words-decor-line {
+		position: absolute;
+		left: -50%; bottom: 10%;
+		width: 100%; height: 2px;
+		background: var(--white);
+		transform: scale(0,1);
 	}
 }
 
 .words-line {
+	position: relative;
 	overflow: hidden;
 	display: block;
 }

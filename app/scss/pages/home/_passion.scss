@@ -77,8 +77,8 @@
 
 		& img {
 			position: absolute;
-			left: 0; top: -50px;
-			width: 100%; height: calc(100% + 100px);
+			left: 0; top: -100px;
+			width: 100%; height: calc(100% + 200px);
 			object-fit: cover;
 		}
 	}
@@ -163,6 +163,7 @@
 
 			background: var(--white);
 			border-radius: 50%;
+
 		}
 
 		// .passion__content-slider--nav
@@ -198,7 +199,7 @@
 			}
 
 			& svg {
-				width: 50%; height: 50%;
+				width: 45%; height: 100%;
 				fill: transparent;
 			}
 
@@ -248,7 +249,7 @@
 			color: var(--white);
 			max-width: 300px;
 			@media (min-width: 1105px) {
-				max-width: 350px;
+				max-width: 370px;
 			}
 			line-height: 100.4%;
 			letter-spacing: -0.035em;

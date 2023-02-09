@@ -205,7 +205,12 @@
 			color: #FFFFFF;
 			position: relative;
 
-			& .underline-text-element {
+			& .words-line-element {
+				transform: translate3d(0,0,0);
+				opacity: 1;
+			}
+
+			/* & .underline-text-element {
 				clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
 				transition: clip-path .4s cubic-bezier(0.63, 0.01, 0.24, 1);
 			}
@@ -214,7 +219,7 @@
 				position: static;
 				display: inline;
 				border-bottom: 1px solid var(--white);
-			}
+			} */
 
 		}
 	}

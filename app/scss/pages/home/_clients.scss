@@ -111,6 +111,12 @@
 		&--content {
 			flex: 1 1 auto;
 			position: relative;
+
+			& .word-span {
+				display: inline-block;
+				opacity: 0;
+				transform: translate3d(0,50%,0);
+			}
 		}
 
 		// .clients__slide--logo

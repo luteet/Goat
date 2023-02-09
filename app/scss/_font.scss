@@ -2,13 +2,13 @@
 .main-title {
 	font-family: var(--title-font);
 	font-weight: 700;
-	font-size: 12vw;
+	font-size: 13vw;
 	line-height: 100.4%;
 	letter-spacing: -0.035em;
 	text-transform: uppercase;
 
 	color: #FFFFFF;
-	@media (min-width: 365px) {
+	/* @media (min-width: 365px) {
 		font-size: 3.125rem;
 	}
 
@@ -18,9 +18,9 @@
 	
 	@media (min-width: 405px) {
 		font-size: 3.625rem;
-	}
+	} */
 	
-	@media (min-width: 425px) {
+	@media (min-width: 435px) {
 		font-size: 3.75rem;
 	}
 	

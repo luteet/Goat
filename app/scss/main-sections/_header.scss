@@ -128,11 +128,13 @@
 
 			flex: 1 1 100%;
 			padding-bottom: 30px;
+			align-self: end;
 
 			@media (min-width: 965px) {
 				flex: 0 1 auto;
 				flex-direction: row;
 				flex-wrap: wrap;
+				align-self: auto;
 				padding-bottom: 0;
 			}
 		}
@@ -226,7 +228,7 @@
 			margin: -16px;
 
 			@media (min-width: 965px) {
-				margin: 0;
+				margin: -8.5px -10px;
 			}
 		}
 
