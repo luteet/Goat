@@ -1,7 +1,10 @@
 .passion {
 
+	
+
 	display: flex;
 	flex-direction: column;
+	
 
 	@media (min-width: 1105px) {
 		margin-top: -2px;
@@ -14,11 +17,14 @@
 	// .passion__wrapper
 
 	&__wrapper {
+		
+		//position: relative;
+
 		display: flex;
 		flex-direction: column;
 		position: relative;
 
-		min-height: 625px;
+		min-height: 823px;
 		
 		padding-top: 110px; padding-bottom: 110px;
 		
@@ -64,21 +70,44 @@
 		position: absolute;
 		left: 0; top: 0;
 		width: 100%; height: 100%;
-		background: var(--black);
+		//background: var(--black);
+		&--element {
+			position: absolute;
+			left: 0; top: 0;
+			width: 100%; height: 100%;
+			background-size: cover;
+			background-position: right center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			@media (min-width: 1000px) {
+				height: calc(100vh + 50px);
+				transform: translate3d(0, var(--y), 0);
+				background-attachment: local;
+			}
+		}
 		overflow: hidden;
+		z-index: -1;
 		&::after {
 			content: '';
 			position: absolute;
 			left: 0; top: 0;
 			width: 100%; height: 100%;
 			background: var(--black);
-			opacity: .4;
+			opacity: .5;
 		}
 
 		& img {
-			position: absolute;
-			left: 0; top: -100px;
-			width: 100%; height: calc(100% + 200px);
+			position: fixed;
+			left: 0; top: 0;
+			z-index: -1;
+			//transform: translate3d(0, var(--y), 0);
+			width: 100%; height: calc(100vh + 50px);
+
+			@media (min-width: 1000px) {
+				position: absolute;
+				top: -25px;
+				
+			}
 			object-fit: cover;
 		}
 	}
@@ -199,7 +228,7 @@
 			}
 
 			& svg {
-				width: 45%; height: 100%;
+				width: 100%; height: 100%;
 				fill: transparent;
 			}
 
@@ -280,13 +309,21 @@
 
 		background: rgba(255, 255, 255, 0.26);
 		transition: opacity .2s ease-in-out;
-		&._slide-change {
-			&::-webkit-progress-value {
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0; top: 0;
+			width: var(--value); height: 100%;
+			background: var(--white);
+		}
+		&._slide-change::before {
+			transition: width var(--slider-speed, 3s) linear;
+			/* &::-webkit-progress-value {
 				transition: width var(--slider-speed, 3s) linear;
 			}
 			&::-moz-progress-bar {
 				transition: width var(--slider-speed, 3s) linear;
-			}
+			} */
 		}
 
 		&::-webkit-progress-bar {

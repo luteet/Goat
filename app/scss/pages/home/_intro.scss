@@ -1,15 +1,15 @@
 .intro {
 
-	padding-top: calc(var(--height-header) + 10px); 
+	padding-top: calc(var(--height-header) + 30px); 
 
-	padding-bottom: 38px;
+	padding-bottom: calc(var(--height-header) + 30px);
 	@media (min-width: 475px) {
-		padding-top: calc(var(--height-header) + 10px); 
-		padding-bottom: 38px;
+		padding-top: calc(var(--height-header) + 40px); 
+		padding-bottom: calc(var(--height-header) + 40px);
 	}
 	@media (min-width: 605px) {
-		padding-top: calc(var(--height-header) + 10px); 
-		padding-bottom: 48px;
+		padding-top: calc(var(--height-header) + 10px);
+		padding-bottom: calc(var(--height-header) + 10px);
 	}
 	@media (min-width: 965px) {
 		padding-bottom: 40px;
@@ -25,7 +25,8 @@
 		padding-top: calc(var(--height-header) + 0px); 
 	}
    
-	min-height: 100vh;
+	min-height: var(--height-screen);
+	//transition: min-height 1s ease-in-out;
 
 	display: flex;
 	flex-direction: column;
@@ -149,15 +150,21 @@
 
 	&__footer {
 		//flex: 1 1 auto;
+		
 		display: flex;
 
 		padding-top: 45px;
 
 		@media (min-width: 425px) {
 			padding-top: 48px;
+			bottom: 48px;
 		}
 
+		position: absolute;
+		left: 0; bottom: 45px;
+		width: 100%;
 		@media (min-width: 605px) {
+			position: static;
 			justify-content: flex-end;
 		}
 		align-items: flex-end;

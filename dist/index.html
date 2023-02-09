@@ -76,7 +76,7 @@
 	<main class="main">
 		<section class="intro anim-section section-margin-bottom">
 			<div class="intro__bg video-auto-wrapper">
-				<video src="video/homepage_video.mp4" preload="auto" muted loop autoplay playsinline class="intro__bg--video video-auto-element anim-parallax-element" data-pos="to-bottom" data-anchor=".intro"></video>
+				<video data-src="video/homepage_video.mp4" data-autoplay="true" muted loop playsinline class="intro__bg--video video-lazy-loading video-auto-element anim-parallax-element" data-pos="to-bottom" data-anchor=".intro"></video>
 				<picture>
 					<source srcset="img/home/intro/poster.webp" type="image/webp">
 					<img src="img/home/intro/poster.png" alt="" width="0" height="0" class="intro__bg--poster video-auto-poster" loading="lazy">
@@ -120,15 +120,9 @@
 									<use xlink:href="img/sprites.svg#plus"></use>
 								</svg>
 							</div>
-							<!-- <div class="projects__card--video">
-								<picture>
-									<source srcset="img/home/our-projects/image-1.webp" type="image/webp">
-									<img src="img/home/our-projects/image-1.jpg" alt="" width="353" height="501" loading="lazy">
-								</picture>
-							</div> -->
 							<div class="projects__card--video">
 								<div class="projects__card--video-wrapper video-wrapper">
-									<video src="video/projectvideo_1.mp4" class="video-element" preload="auto" muted loop playsinline></video>
+									<video data-src="video/projectvideo_1.mp4" class="video-lazy-loading video-element" preload="auto" muted loop playsinline></video>
 									<picture>
 										<source srcset="img/home/our-projects/image-1.webp" type="image/webp">
 										<img src="img/home/our-projects/image-1.jpg" alt="" width="353" height="277" loading="lazy" class="video-preview">
@@ -213,39 +207,12 @@
 		<section class="passion section-padding">
 			<div class="passion__wrapper section-container">
 				<div class="passion__bg">
-					<picture>
+					<div class="passion__bg--element anim-parallax-element" data-anchor=".passion" style="background-image: url(img/home/passion/image.webp);"></div>
+					<!-- <picture>
 						<source srcset="img/home/passion/image.webp" type="image/webp">
 						<img src="img/home/passion/image.jpg" alt="" width="0" height="0" loading="lazy" class="anim-parallax-element" data-anchor=".passion">
-					</picture>
+					</picture> -->
 				</div>
-				<!-- <div class="passion__image-slider swiper">
-					<div class="passion__image-slider--wrapper swiper-wrapper">
-						<div class="passion__image-slider--slide passion__image-slide swiper-slide">
-							<div class="passion__image-slide--body">
-								<picture>
-									<source srcset="img/home/passion/image.webp" type="image/webp">
-									<img src="img/home/passion/image.jpg" alt="" width="0" height="0" loading="lazy" class="anim-parallax-element" data-anchor=".passion">
-								</picture>
-							</div>
-						</div>
-						<div class="passion__image-slider--slide passion__image-slide swiper-slide">
-							<div class="passion__image-slide--body">
-								<picture>
-									<source srcset="img/home/passion/image.webp" type="image/webp">
-									<img src="img/home/passion/image.jpg" alt="" width="0" height="0" loading="lazy" class="anim-parallax-element" data-anchor=".passion">
-								</picture>
-							</div>
-						</div>
-						<div class="passion__image-slider--slide passion__image-slide swiper-slide">
-							<div class="passion__image-slide--body">
-								<picture>
-									<source srcset="img/home/passion/image.webp" type="image/webp">
-									<img src="img/home/passion/image.jpg" alt="" width="0" height="0" loading="lazy" class="anim-parallax-element" data-anchor=".passion">
-								</picture>
-							</div>
-						</div>
-					</div>
-				</div> -->
 				<div class="passion__content-slider swiper">
 					<div class="passion__content-slider--header">
 						<div class="passion__content-slider--icon">
@@ -272,7 +239,7 @@
 								Passion. Grit. Hustle. Dedication. 
 							</h2>
 							<div class="passion__footer">
-								<progress class="passion__timer" value="0" max="100"></progress>
+								<div class="passion__timer"></div>
 							</div>
 						</div>
 						<div class="passion__content-slider--slide passion__content-slide swiper-slide">
@@ -280,7 +247,7 @@
 								Lorem ipsum dolor sit.
 							</h2>
 							<div class="passion__footer">
-								<progress class="passion__timer" value="0" max="100"></progress>
+								<div class="passion__timer"></div>
 							</div>
 						</div>
 						<div class="passion__content-slider--slide passion__content-slide swiper-slide">
@@ -288,7 +255,7 @@
 								Accusamus consectetur temporibus architecto.
 							</h2>
 							<div class="passion__footer">
-								<progress class="passion__timer" value="0" max="100"></progress>
+								<div class="passion__timer"></div>
 							</div>
 						</div>
 					</div>
@@ -664,7 +631,7 @@
 	</div>
 
 	<div class="preloader">
-		<video src="video/preloader_video.mp4" autoplay loop muted playsinline class="preloader__element"></video>
+		<video data-src="video/preloader_video.mp4" loop muted playsinline class="preloader__element"></video>
 	</div>
 
 	<script src="js/libs.min.js"></script>

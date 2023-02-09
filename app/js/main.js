@@ -90,7 +90,13 @@ videoOnHover.forEach(videoOnHover => {
 		const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
 
 		videoOnHover.classList.add('_hover');
-		video.play();
+		if(video.classList.contains('video-lazy-loading')) {
+			if(video.classList.contains('_loaded')) {
+				video.play();
+			}
+		} else {
+			video.play();
+		}
 
 	})
 	videoOnHover.addEventListener('mouseleave', function () {
@@ -99,8 +105,16 @@ videoOnHover.forEach(videoOnHover => {
 
 		const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
 
-		video.currentTime = 0;
-		video.pause()
+		if(video.classList.contains('video-lazy-loading')) {
+			if(video.classList.contains('_loaded')) {
+				video.currentTime = 0;
+				video.pause()
+			}
+		} else {
+			video.currentTime = 0;
+			video.pause()
+		}
+		
 	})
 })
 
@@ -472,578 +486,604 @@ videoElements.forEach(videoElement => {
 	})
 })
 
+const preloader = document.querySelector('.preloader'),
+	  preloaderElement = preloader.querySelector('.preloader__element');
 
+const videoLazyLoading = document.querySelectorAll('.video-lazy-loading');
 
 html.style.setProperty("--height-screen", window.innerHeight + "px");
 html.style.setProperty("--height-header", header.offsetHeight + "px");
 
 document.addEventListener('DOMContentLoaded', function () {
 
-	const preloader = document.querySelector('.preloader');
-	preloader.classList.add('_active');
-
-	setTimeout(() => {
-		preloader.classList.remove('_active');
-
-		wordsToLines();
-
-		// =-=-=-=-=-=-=-=-=-=-=-=- <Animation> -=-=-=-=-=-=-=-=-=-=-=-=
-
-		let windowSize = window.innerWidth;
-
-		const scrollCheck = document.createElement('div');
-		scrollCheck.classList.add('scroll-check');
-		scrollCheck.setAttribute('aria-hidden', true);
-		body.append(scrollCheck);
-
-		let scrollPositionX = 0, scrollPositionY = 0;
-		let bodyScroll = document.getElementById("main-scrollbar");
-
-
-		function isHidden(el) {
-			return (el.offsetParent === null)
-		}
-
-		let tl = gsap.timeline();
-		const animSection = document.querySelectorAll('.anim-section');
-		let animSectionArray = [];
-
-		function sortByIndex(arr) {
-			if (windowSize < 980) return arr.sort((a, b) => a.mobIndex > b.mobIndex ? 1 : -1); else return arr.sort((a, b) => a.index > b.index ? 1 : -1);
-		}
-
-		animSection.forEach(animSection => {
-
-			const animElement = animSection.querySelectorAll('.anim-element');
-
-			let animArray = [];
-			animElement.forEach(animElement => {
-				const index = Number(animElement.dataset.index),
-					mobIndex = (Number(animElement.dataset.mobIndex)) ? Number(animElement.dataset.mobIndex) : index;
-
-				animArray.push({ element: animElement, index: index, mobIndex: mobIndex });
-			})
-
-			animArray = sortByIndex(animArray);
-
-			let tl = new TimelineMax();
-			tl.pause();
-
-
-			Array.from(animArray).forEach((animArrayElement, index) => {
-
-				const duration = (Number(animArrayElement['element'].dataset.duration)) ? Number(animArrayElement['element'].dataset.duration) : 0.5,
-					delay = (Number(animArrayElement['element'].dataset.delay)) ? Number(animArrayElement['element'].dataset.delay) : 0,
-					stagger = (Number(animArrayElement['element'].dataset.stagger)) ? Number(animArrayElement['element'].dataset.stagger) : 0.05,
-					childrensReverse = (animArrayElement['element'].dataset.childrensReverse == "true") ? true : false;
-
-				if (animArrayElement['element'].classList.contains('anim-text')) {
-
-					tl.to(animArrayElement['element'], {
-						//opacity: 1,
-						duration: duration,
-						delay: delay,
-						onStart: function () {
-
-							let spanArray = [];
-							animArrayElement['element'].querySelectorAll('.words-line > .words-line-element').forEach(span => {
-								//if (!isHidden(span)) spanArray.push(span); else span.style.transform = 'translate3d(0,0%,0)'; span.style.opacity = 1;
-								spanArray.push(span);
-							})
-
-							gsap.to(spanArray, {
-								transform: 'translate3d(0,0,0)',
-								startAt: {
-									transform: 'translate3d(0,100%,0)',
-								},
-								ease: "power4.out",
-								duration: duration,
-								stagger: stagger,
-								onComplete: function () {
-									animArrayElement['element'].classList.add('_animated');
-								}
-							})
-						}
-					}, (index == 0) ? false : "-=1")
-
-				} else if (animArrayElement['element'].classList.contains('anim-fade-in')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1");
-
-				} else if (animArrayElement['element'].classList.contains('anim-fade-up')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						transform: 'translate3d(0,0,0)',
-						startAt: {
-							transform: 'translate3d(0,25px,0)',
-						},
-						duration: duration,
-						delay: delay,
-						onStart: function () {
-							animArrayElement['element'].classList.add('_animated');
-						}
-					}, (index == 0) ? false : "-=1");
-
-				} else if (animArrayElement['element'].classList.contains('anim-fade-right')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						transform: 'translate3d(0,0,0)',
-						startAt: {
-							transform: 'translate3d(-20px,0,0)',
-						},
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1");
-
-				} else if (animArrayElement['element'].classList.contains('anim-fade-left')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						transform: 'translate3d(0,0,0)',
-						startAt: {
-							transform: 'translate3d(20px,0,0)',
-						},
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1");
-
-				} else if (animArrayElement['element'].classList.contains('anim-zoom-out')) {
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						transform: 'scale3d(1,1,1)',
-						startAt: {
-							transform: 'scale3d(1.1,1.1,1)',
-							opacity: 0,
-						},
-						duration: duration,
-						ease: "power2.out",
-						delay: delay,
-					}, (index == 0) ? false : "-=1");
-				} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-right')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						duration: duration,
-						delay: delay,
-						onStart: function () {
-
-							let childrens = Array.from(animArrayElement['element'].children);
-
-							if (childrensReverse) childrens = childrens.reverse();
-
-							gsap.to(childrens, {
-								transform: 'translate3d(0,0,0)',
-								opacity: 1,
-								startAt: {
-									transform: 'translate3d(-20px,0,0)',
-									opacity: 0,
-								},
-								duration: duration,
-								stagger: stagger,
-
-							})
-						}
-					}, (index == 0) ? false : "-=1")
-
-				} else if (animArrayElement['element'].classList.contains('anim-fade-progress-right')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) 100%, transparent 105%)',
-						startAt: {
-							maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) -5%, transparent 0%)',
-						},
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1")
-
-					/* tl.to(animArrayElement['element'], {
-						opacity: 1,
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1") */
-				} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-left')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						duration: duration,
-						delay: delay,
-						onStart: function () {
-
-							let childrens = Array.from(animArrayElement['element'].children);
-
-							if (childrensReverse) childrens = childrens.reverse();
-
-							gsap.to(childrens, {
-								transform: 'translate3d(0,0,0)',
-								opacity: 1,
-								startAt: {
-									transform: 'translate3d(20px,0,0)',
-									opacity: 0,
-								},
-								duration: duration,
-								stagger: stagger,
-
-							})
-						}
-					}, (index == 0) ? false : "-=1")
-
-				} else if (animArrayElement['element'].classList.contains('anim-zoom-in')) {
-
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						transform: 'scale3d(1,1,1)',
-						startAt: {
-							transform: 'scale3d(0.7,0.7,1)',
-						},
-						duration: duration,
-						delay: delay,
-
-					}, (index == 0) ? false : "-=1")
-
-				} else if (animArrayElement['element'].classList.contains('anim-clip-down')) {
-					tl.to(animArrayElement['element'], {
-						opacity: 1,
-						clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-						startAt: {
-							clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
-							opacity: 1,
-						},
-						ease: "power2.out",
-						duration: duration,
-						delay: delay,
-					}, (index == 0) ? false : "-=1");
-				}
-
-			})
-
-			animSection.style.opacity = 1;
-			animSectionArray.push([animSection, tl]);
-
-		})
-
-		function animScroll() {
-
-			Array.from(animSectionArray).forEach((animArrayElement, index) => {
-				const element = animArrayElement[0],
-					offset = (Number(animArrayElement[0].dataset.offset)) ? Number(animArrayElement[0].dataset.offset) : 0;
-				elementCoords = element.getBoundingClientRect();
-
-				if (window.innerHeight / 1.5 - offset > elementCoords.top && !element.classList.contains('_animated')) {
-					element.classList.add('_animated')
-					animArrayElement[1].play();
-				}
-			})
-		}
-
-		document.addEventListener('scroll', function (event) {
-			animScroll();
-
-			parallaxElementsFunc(Math.abs(scrollCheck.getBoundingClientRect().y));
-		})
-
-		function parallaxElementsFunc(scrollPositionY) {
-			parallaxElements.forEach(parallaxElement => {
-
-				if (parallaxElement.dataset.pos == "to-bottom") {
-
-					if (document.querySelector(parallaxElement.dataset.anchor).offsetTop > scrollPositionY - (window.innerHeight)) {
-						parallaxElement.style.transform = `translate3d(0,${scrollPositionY / 7}px,0)`;
-					}
-
-				} else {
-
-					if (document.querySelector(parallaxElement.dataset.anchor).offsetTop > scrollPositionY - (window.innerHeight / 2)) {
-						let result = (document.querySelector(parallaxElement.dataset.anchor).offsetTop - scrollPositionY) / 20;
-						if (result >= 100) result = 100; else if (result <= -100) result = -100;
-
-						parallaxElement.style.transform = `translate3d(0,${result}px,0)`;
-					}
-				}
-
-			})
-		}
-
-		const parallaxElements = document.querySelectorAll('.anim-parallax-element');
-
-
-		function smoothScrollbarInit() {
-
-			bodyScrollBar = Scrollbar.init(bodyScroll, {
-				damping: 0.05,
-				delegateTo: document,
-			});
-
-			bodyScrollBar.addListener(({ offset }) => {
-
-				scrollPositionX = offset.x;
-				scrollPositionY = offset.y;
-
-				if (body.classList.contains('_active')) bodyScrollBar.setPosition(0, 0, 0);
-
-				parallaxElementsFunc(scrollPositionY);
-
-				animScroll()
-
-			});
-
-		}
-
-
-		// =-=-=-=-=-=-=-=-=-=-=-=- <resize> -=-=-=-=-=-=-=-=-=-=-=-=
-
-		let resizeCheck = {};
-
-		function resizeCheckFunc(size, minWidth, maxWidth) {
-			if (windowSize <= size && (resizeCheck[String(size)] == true || resizeCheck[String(size)] == undefined) && resizeCheck[String(size)] != false) {
-				resizeCheck[String(size)] = false;
-				maxWidth(); // < size
-			}
-
-			if (windowSize >= size && (resizeCheck[String(size)] == false || resizeCheck[String(size)] == undefined) && resizeCheck[String(size)] != true) {
-				resizeCheck[String(size)] = true;
-				minWidth(); // > size
-			}
-		}
-
-		function resize() {
-
-			windowSize = window.innerWidth;
-
-			html.style.setProperty("--height-screen", window.innerHeight + "px");
-			html.style.setProperty("--height-header", header.offsetHeight + "px");
-
-			resizeCheckFunc(1000,
-				function () {  // screen > 992px
-
-					smoothScrollbarInit();
-					bodyScrollBar.setPosition(0, 0);
-					bodyScrollBar.limit.y = 0;
-					bodyScrollBar.track.xAxis.element.remove();
-					bodyScrollBar.update();
-
-				},
-				function () {  // screen < 992px
-
-					try {
-						bodyScrollBar.destroy()
-					} catch {
-
-					}
-
-
-				});
-
-		}
-
-		resize();
-
-		window.onresize = resize;
-
-		// =-=-=-=-=-=-=-=-=-=-=-=- </resize> -=-=-=-=-=-=-=-=-=-=-=-=
-
+	preloaderElement.src = preloaderElement.dataset.src;
+	preloaderElement.load()
+	
+	preloaderElement.onloadeddata = function () {
+		preloaderElement.play()
+		preloader.classList.add('_active');
+		
 		setTimeout(() => {
-			body.classList.add('_overflow-visible');
-
-			animScroll()
-
-			gsap.to(header, {
-				transform: 'translate3d(0,0,0)',
-				delay: 0.5,
-			});
-
-			const animateDecorLines = document.querySelectorAll('.animate-decor-lines');
-			animateDecorLines.forEach(animateDecorLine => {
-
-				const lines = animateDecorLine.querySelectorAll('.words-decor-line'),
-				spaceSpan = document.createElement('span');
-				spaceSpan.innerHTML = '&nbsp;';
-				spaceSpan.style.display = 'inline-block';
-				spaceSpan.style.position = 'absolute';
-				spaceSpan.style.pointerEvents = 'none';
-
-				animateDecorLine.append(spaceSpan)
-
-				const spaceWidth = spaceSpan.offsetWidth;
-
-				spaceSpan.remove();
-				animateDecorLine.style.setProperty('--space-width', spaceWidth + 'px');
-
-				animateDecorLine.addEventListener('mouseenter', function () {
-					gsap.to(lines, {
-						transform: 'scale(2,1)',
-						duration: 0.5,
-						stagger: 0.2,
-					})
-				})
-
-				animateDecorLine.addEventListener('mouseleave', function () {
-					gsap.to(lines, {
-						transform: 'scale(0,1)',
-						duration: 0.5,
-						stagger: 0.2,
-					})
-				})
-			})
-
-			// =-=-=-=-=-=-=-=-=-=-=-=- <slider> -=-=-=-=-=-=-=-=-=-=-=-=
-
-			let projectsSlider
-			if (document.querySelector('.projects__slider')) {
-				projectsSlider = new Swiper('.projects__slider', {
-
-					spaceBetween: 24,
-					slidesPerView: "auto",
-
-				});
+			preloader.classList.remove('_active');
+	
+			wordsToLines();
+	
+			// =-=-=-=-=-=-=-=-=-=-=-=- <Animation> -=-=-=-=-=-=-=-=-=-=-=-=
+	
+			let windowSize = window.innerWidth;
+	
+			const scrollCheck = document.createElement('div');
+			scrollCheck.classList.add('scroll-check');
+			scrollCheck.setAttribute('aria-hidden', true);
+			body.append(scrollCheck);
+	
+			let scrollPositionX = 0, scrollPositionY = 0;
+			let bodyScroll = document.getElementById("main-scrollbar");
+	
+	
+			function isHidden(el) {
+				return (el.offsetParent === null)
 			}
-
-
-			let sliderSpeed = 500, autoplayDelay = 4000;
-
-			const passionTimer = document.querySelectorAll('.passion__timer');
-
-			let passionContentSlider
-			if (document.querySelector('.projects__slider')) {
-				passionContentSlider = new Swiper('.passion__content-slider', {
-
-					spaceBetween: 0,
-					slidesPerView: 1,
-
-					allowTouchMove: false,
-
-					effect: "fade",
-					loop: true,
-					speed: sliderSpeed,
-
-					autoplay: {
-						delay: autoplayDelay,
-						disableOnInteraction: false,
-					},
-
-					navigation: {
-						nextEl: '.swiper-button-next',
-						prevEl: '.swiper-button-prev',
-					},
-
-					/* thumbs: {
-						swiper: passionImageSlider,
-					}, */
-
-					on: {
-						init: function () {
-							html.style.setProperty('--slider-speed', autoplayDelay / 1000 + 's');
-							const 
-							activeSlide = document.querySelector('.passion__content-slider').querySelector('.swiper-slide-active'),
-							animateTitle = activeSlide.querySelector('.animate-title'),
-							activeProggresTimer = activeSlide.querySelector('.passion__timer');
-
-							if(animateTitle) {
-								const lines = animateTitle.querySelectorAll('.words-line-element');
-								gsap.to(lines, {
+	
+			let tl = gsap.timeline();
+			const animSection = document.querySelectorAll('.anim-section');
+			let animSectionArray = [];
+	
+			function sortByIndex(arr) {
+				if (windowSize < 980) return arr.sort((a, b) => a.mobIndex > b.mobIndex ? 1 : -1); else return arr.sort((a, b) => a.index > b.index ? 1 : -1);
+			}
+	
+			animSection.forEach(animSection => {
+	
+				const animElement = animSection.querySelectorAll('.anim-element');
+	
+				let animArray = [];
+				animElement.forEach(animElement => {
+					const index = Number(animElement.dataset.index),
+						mobIndex = (Number(animElement.dataset.mobIndex)) ? Number(animElement.dataset.mobIndex) : index;
+	
+					animArray.push({ element: animElement, index: index, mobIndex: mobIndex });
+				})
+	
+				animArray = sortByIndex(animArray);
+	
+				let tl = new TimelineMax();
+				tl.pause();
+	
+	
+				Array.from(animArray).forEach((animArrayElement, index) => {
+	
+					const duration = (Number(animArrayElement['element'].dataset.duration)) ? Number(animArrayElement['element'].dataset.duration) : 0.5,
+						delay = (Number(animArrayElement['element'].dataset.delay)) ? Number(animArrayElement['element'].dataset.delay) : 0,
+						stagger = (Number(animArrayElement['element'].dataset.stagger)) ? Number(animArrayElement['element'].dataset.stagger) : 0.05,
+						childrensReverse = (animArrayElement['element'].dataset.childrensReverse == "true") ? true : false;
+	
+					if (animArrayElement['element'].classList.contains('anim-text')) {
+	
+						tl.to(animArrayElement['element'], {
+							//opacity: 1,
+							duration: duration,
+							delay: delay,
+							onStart: function () {
+	
+								let spanArray = [];
+								animArrayElement['element'].querySelectorAll('.words-line > .words-line-element').forEach(span => {
+									//if (!isHidden(span)) spanArray.push(span); else span.style.transform = 'translate3d(0,0%,0)'; span.style.opacity = 1;
+									spanArray.push(span);
+								})
+	
+								gsap.to(spanArray, {
 									transform: 'translate3d(0,0,0)',
-									opacity: 1,
-									duration: 0.5,
-									stagger: 0.07,
+									startAt: {
+										transform: 'translate3d(0,100%,0)',
+									},
+									ease: "power4.out",
+									duration: duration,
+									stagger: stagger,
+									onComplete: function () {
+										animArrayElement['element'].classList.add('_animated');
+									}
 								})
 							}
-
-							activeProggresTimer.classList.add('_slide-change');
-							activeProggresTimer.value = 100;
-						},
-						slideChangeTransitionEnd: function () {
-							const 
-							activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
-							animateTitle = activeSlide.querySelector('.animate-title'),
-							proggresTimer = document.querySelector('.passion__timer._slide-change');
-							
-							
-
-							if (proggresTimer) {
-								proggresTimer.classList.remove('_slide-change');
-								proggresTimer.value = 0;
-
-								const activeProggresTimer = activeSlide.querySelector('.passion__timer');
-
-								activeProggresTimer.classList.add('_slide-change');
-								activeProggresTimer.value = 100;
-							} else {
-								const activeProggresTimer = activeSlide.querySelector('.passion__timer');
-
-								activeProggresTimer.classList.add('_slide-change');
-								activeProggresTimer.value = 100;
+						}, (index == 0) ? false : "-=1")
+	
+					} else if (animArrayElement['element'].classList.contains('anim-fade-in')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1");
+	
+					} else if (animArrayElement['element'].classList.contains('anim-fade-up')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							transform: 'translate3d(0,0,0)',
+							startAt: {
+								transform: 'translate3d(0,25px,0)',
+							},
+							duration: duration,
+							delay: delay,
+							onStart: function () {
+								animArrayElement['element'].classList.add('_animated');
 							}
+						}, (index == 0) ? false : "-=1");
+	
+					} else if (animArrayElement['element'].classList.contains('anim-fade-right')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							transform: 'translate3d(0,0,0)',
+							startAt: {
+								transform: 'translate3d(-20px,0,0)',
+							},
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1");
+	
+					} else if (animArrayElement['element'].classList.contains('anim-fade-left')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							transform: 'translate3d(0,0,0)',
+							startAt: {
+								transform: 'translate3d(20px,0,0)',
+							},
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1");
+	
+					} else if (animArrayElement['element'].classList.contains('anim-zoom-out')) {
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							transform: 'scale3d(1,1,1)',
+							startAt: {
+								transform: 'scale3d(1.1,1.1,1)',
+								opacity: 0,
+							},
+							duration: duration,
+							ease: "power2.out",
+							delay: delay,
+						}, (index == 0) ? false : "-=1");
+					} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-right')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							duration: duration,
+							delay: delay,
+							onStart: function () {
+	
+								let childrens = Array.from(animArrayElement['element'].children);
+	
+								if (childrensReverse) childrens = childrens.reverse();
+	
+								gsap.to(childrens, {
+									transform: 'translate3d(0,0,0)',
+									opacity: 1,
+									startAt: {
+										transform: 'translate3d(-20px,0,0)',
+										opacity: 0,
+									},
+									duration: duration,
+									stagger: stagger,
+	
+								})
+							}
+						}, (index == 0) ? false : "-=1")
+	
+					} else if (animArrayElement['element'].classList.contains('anim-fade-progress-right')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) 100%, transparent 105%)',
+							startAt: {
+								maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) -5%, transparent 0%)',
+							},
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1")
+	
+						/* tl.to(animArrayElement['element'], {
+							opacity: 1,
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1") */
+					} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-left')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							duration: duration,
+							delay: delay,
+							onStart: function () {
+	
+								let childrens = Array.from(animArrayElement['element'].children);
+	
+								if (childrensReverse) childrens = childrens.reverse();
+	
+								gsap.to(childrens, {
+									transform: 'translate3d(0,0,0)',
+									opacity: 1,
+									startAt: {
+										transform: 'translate3d(20px,0,0)',
+										opacity: 0,
+									},
+									duration: duration,
+									stagger: stagger,
+	
+								})
+							}
+						}, (index == 0) ? false : "-=1")
+	
+					} else if (animArrayElement['element'].classList.contains('anim-zoom-in')) {
+	
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							transform: 'scale3d(1,1,1)',
+							startAt: {
+								transform: 'scale3d(0.7,0.7,1)',
+							},
+							duration: duration,
+							delay: delay,
+	
+						}, (index == 0) ? false : "-=1")
+	
+					} else if (animArrayElement['element'].classList.contains('anim-clip-down')) {
+						tl.to(animArrayElement['element'], {
+							opacity: 1,
+							clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+							startAt: {
+								clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
+								opacity: 1,
+							},
+							ease: "power2.out",
+							duration: duration,
+							delay: delay,
+						}, (index == 0) ? false : "-=1");
+					}
+	
+				})
+	
+				animSection.style.opacity = 1;
+				animSectionArray.push([animSection, tl]);
+	
+			})
+	
+			function animScroll() {
 
+				html.style.setProperty("--height-screen", window.innerHeight + "px");
+				html.style.setProperty("--height-header", header.offsetHeight + "px");
+	
+				Array.from(animSectionArray).forEach((animArrayElement, index) => {
+					const element = animArrayElement[0],
+						offset = (Number(animArrayElement[0].dataset.offset)) ? Number(animArrayElement[0].dataset.offset) : 0;
+					elementCoords = element.getBoundingClientRect();
+	
+					if (window.innerHeight / 1.5 - offset > elementCoords.top && !element.classList.contains('_animated')) {
+						element.classList.add('_animated')
+						animArrayElement[1].play();
+					}
+				})
+			}
+	
+			document.addEventListener('scroll', function (event) {
+				animScroll();
+	
+				parallaxElementsFunc(Math.abs(scrollCheck.getBoundingClientRect().y));
+			})
+	
+			function parallaxElementsFunc(scrollPositionY) {
+				parallaxElements.forEach(parallaxElement => {
+	
+					if (parallaxElement.dataset.pos == "to-bottom") {
+	
+						if (document.querySelector(parallaxElement.dataset.anchor).offsetTop > scrollPositionY - (window.innerHeight)) {
+							parallaxElement.style.transform = `translate3d(0,${scrollPositionY / 7}px,0)`;
+						}
+	
+					} else {
+						
+						/* if (document.querySelector(parallaxElement.dataset.anchor).offsetTop > scrollPositionY - window.innerHeight) {
+							
+						} */
+						//console.log(document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect())
+						//let result = scrollPositionY - document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - (window.innerHeight * 4);
+							parallaxElement.style.setProperty('--y', -document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - header.offsetHeight + 'px');
+					}
+	
+				})
+			}
+	
+			const parallaxElements = document.querySelectorAll('.anim-parallax-element');
+	
+	
+			function smoothScrollbarInit() {
+	
+				bodyScrollBar = Scrollbar.init(bodyScroll, {
+					damping: 0.05,
+					delegateTo: document,
+				});
+	
+				bodyScrollBar.addListener(({ offset }) => {
+	
+					scrollPositionX = offset.x;
+					scrollPositionY = offset.y;
+	
+					if (body.classList.contains('_active')) bodyScrollBar.setPosition(0, 0, 0);
+	
+					parallaxElementsFunc(scrollPositionY);
+	
+					animScroll()
+	
+				});
+	
+			}
+	
+	
+			// =-=-=-=-=-=-=-=-=-=-=-=- <resize> -=-=-=-=-=-=-=-=-=-=-=-=
+	
+			let resizeCheck = {};
+	
+			function resizeCheckFunc(size, minWidth, maxWidth) {
+				if (windowSize <= size && (resizeCheck[String(size)] == true || resizeCheck[String(size)] == undefined) && resizeCheck[String(size)] != false) {
+					resizeCheck[String(size)] = false;
+					maxWidth(); // < size
+				}
+	
+				if (windowSize >= size && (resizeCheck[String(size)] == false || resizeCheck[String(size)] == undefined) && resizeCheck[String(size)] != true) {
+					resizeCheck[String(size)] = true;
+					minWidth(); // > size
+				}
+			}
+	
+			function resize() {
+	
+				windowSize = window.innerWidth;
+	
+				html.style.setProperty("--height-screen", window.innerHeight + "px");
+				html.style.setProperty("--height-header", header.offsetHeight + "px");
+	
+				resizeCheckFunc(1000,
+					function () {  // screen > 992px
+	
+						smoothScrollbarInit();
+						bodyScrollBar.setPosition(0, 0);
+						bodyScrollBar.limit.y = 0;
+						bodyScrollBar.track.xAxis.element.remove();
+						bodyScrollBar.update();
+	
+					},
+					function () {  // screen < 992px
+	
+						try {
+							bodyScrollBar.destroy()
+						} catch {
+	
+						}
+	
+	
+					});
+	
+			}
+	
+			resize();
+	
+			window.onresize = resize;
+	
+			// =-=-=-=-=-=-=-=-=-=-=-=- </resize> -=-=-=-=-=-=-=-=-=-=-=-=
+	
+			setTimeout(() => {
+				body.classList.add('_overflow-visible');
+	
+				animScroll()
+	
+				gsap.to(header, {
+					transform: 'translate3d(0,0,0)',
+					delay: 0.5,
+				});
+	
+				const animateDecorLines = document.querySelectorAll('.animate-decor-lines');
+				animateDecorLines.forEach(animateDecorLine => {
+	
+					const lines = animateDecorLine.querySelectorAll('.words-decor-line'),
+					spaceSpan = document.createElement('span');
+					spaceSpan.innerHTML = '&nbsp;';
+					spaceSpan.style.display = 'inline-block';
+					spaceSpan.style.position = 'absolute';
+					spaceSpan.style.pointerEvents = 'none';
+	
+					animateDecorLine.append(spaceSpan)
+	
+					const spaceWidth = spaceSpan.offsetWidth;
+	
+					spaceSpan.remove();
+					animateDecorLine.style.setProperty('--space-width', spaceWidth + 'px');
+	
+					animateDecorLine.addEventListener('mouseenter', function () {
+						gsap.to(lines, {
+							transform: 'scale(2,1)',
+							duration: 0.5,
+							stagger: 0.2,
+						})
+					})
+	
+					animateDecorLine.addEventListener('mouseleave', function () {
+						gsap.to(lines, {
+							transform: 'scale(0,1)',
+							duration: 0.5,
+							stagger: 0.2,
+						})
+					})
+				})
+	
+				// =-=-=-=-=-=-=-=-=-=-=-=- <slider> -=-=-=-=-=-=-=-=-=-=-=-=
+	
+				let projectsSlider
+				if (document.querySelector('.projects__slider')) {
+					projectsSlider = new Swiper('.projects__slider', {
+	
+						spaceBetween: 24,
+						slidesPerView: "auto",
+	
+					});
+				}
+	
+	
+				let sliderSpeed = 500, autoplayDelay = 4000;
+	
+				const passionTimer = document.querySelectorAll('.passion__timer');
+	
+				let passionContentSlider
+				if (document.querySelector('.projects__slider')) {
+					passionContentSlider = new Swiper('.passion__content-slider', {
+	
+						spaceBetween: 0,
+						slidesPerView: 1,
+	
+						allowTouchMove: false,
+	
+						effect: "fade",
+						loop: true,
+						speed: sliderSpeed,
+	
+						autoplay: {
+							delay: autoplayDelay,
+							disableOnInteraction: false,
 						},
-						slideChangeTransitionStart: function () {
-							const 
-							activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
-							animateTitle = activeSlide.querySelector('.animate-title');
-
-							setTimeout(() => {
+	
+						navigation: {
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},
+	
+						/* thumbs: {
+							swiper: passionImageSlider,
+						}, */
+	
+						on: {
+							init: function () {
+								html.style.setProperty('--slider-speed', autoplayDelay / 1000 + 's');
 								const 
-								prevSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-prev'),
-								animateTitlePrev = prevSlide.querySelector('.animate-title');
-								if(animateTitlePrev) {
-									const lines = animateTitlePrev.querySelectorAll('.words-line-element');
+								activeSlide = document.querySelector('.passion__content-slider').querySelector('.swiper-slide-active'),
+								animateTitle = activeSlide.querySelector('.animate-title'),
+								activeProggresTimer = activeSlide.querySelector('.passion__timer');
+	
+								if(animateTitle) {
+									const lines = animateTitle.querySelectorAll('.words-line-element');
 									gsap.to(lines, {
-										transform: 'translate3d(0,50%,0)',
+										transform: 'translate3d(0,0,0)',
 										opacity: 1,
-										duration: 0,
-										stagger: 0,
+										duration: 0.5,
+										stagger: 0.07,
 									})
 								}
-							},500)
-
-							if(animateTitle) {
-								const lines = animateTitle.querySelectorAll('.words-line-element');
-								gsap.to(lines, {
-									transform: 'translate3d(0,0,0)',
-									opacity: 1,
-									duration: 0.5,
-									stagger: 0.07,
-								})
+	
+								activeProggresTimer.classList.add('_slide-change');
+								activeProggresTimer.style.setProperty('--value', '100%');
+							},
+							slideChangeTransitionEnd: function () {
+								const 
+								activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
+								animateTitle = activeSlide.querySelector('.animate-title'),
+								proggresTimer = document.querySelector('.passion__timer._slide-change');
+								
+								
+	
+								if (proggresTimer) {
+									proggresTimer.classList.remove('_slide-change');
+									proggresTimer.style.setProperty('--value', '0%');
+	
+									const activeProggresTimer = activeSlide.querySelector('.passion__timer');
+	
+									activeProggresTimer.classList.add('_slide-change');
+									activeProggresTimer.style.setProperty('--value', '100%');
+								} else {
+									const activeProggresTimer = activeSlide.querySelector('.passion__timer');
+	
+									activeProggresTimer.classList.add('_slide-change');
+									activeProggresTimer.style.setProperty('--value', '100%');
+								}
+	
+							},
+							slideChangeTransitionStart: function () {
+								const 
+								activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
+								animateTitle = activeSlide.querySelector('.animate-title');
+	
+								setTimeout(() => {
+									const 
+									prevSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-prev'),
+									animateTitlePrev = prevSlide.querySelector('.animate-title');
+									if(animateTitlePrev) {
+										const lines = animateTitlePrev.querySelectorAll('.words-line-element');
+										gsap.to(lines, {
+											transform: 'translate3d(0,50%,0)',
+											opacity: 1,
+											duration: 0,
+											stagger: 0,
+										})
+									}
+								},500)
+	
+								if(animateTitle) {
+									const lines = animateTitle.querySelectorAll('.words-line-element');
+									gsap.to(lines, {
+										transform: 'translate3d(0,0,0)',
+										opacity: 1,
+										duration: 0.5,
+										stagger: 0.07,
+									})
+								}
 							}
 						}
-					}
-
-				});
-			}
-
-
-			let clientsSlider;
-			if (document.querySelector('.projects__slider')) {
-				clientsSlider = new Swiper('.clients__slider', {
-					spaceBetween: 24,
-					slidesPerView: "auto",
-				});
-			}
-
-
-			let latesUpdatesSlider;
-			if (document.querySelector('.projects__slider')) {
-				latesUpdatesSlider = new Swiper('.lates-updates__slider', {
-					spaceBetween: 24,
-					slidesPerView: "auto",
-				});
-			}
-
-
-			// =-=-=-=-=-=-=-=-=-=-=-=- </slider> -=-=-=-=-=-=-=-=-=-=-=-=
-
-
-		}, 500);
-		setTimeout(() => {
-			preloader.classList.add('_loaded');
-		}, 400)
-	}, 1500)
+	
+					});
+				}
+	
+	
+				let clientsSlider;
+				if (document.querySelector('.projects__slider')) {
+					clientsSlider = new Swiper('.clients__slider', {
+						spaceBetween: 24,
+						slidesPerView: "auto",
+					});
+				}
+	
+	
+				let latesUpdatesSlider;
+				if (document.querySelector('.projects__slider')) {
+					latesUpdatesSlider = new Swiper('.lates-updates__slider', {
+						spaceBetween: 24,
+						slidesPerView: "auto",
+					});
+				}
+	
+	
+				// =-=-=-=-=-=-=-=-=-=-=-=- </slider> -=-=-=-=-=-=-=-=-=-=-=-=
+	
+	
+			}, 500);
+			setTimeout(() => {
+				preloader.classList.add('_loaded');
+			}, 400)
+		}, 1500)
+	}
+	
 })
+
+window.onload = function () {
+	videoLazyLoading.forEach(videoLazyLoadingElement => {
+		videoLazyLoadingElement.src = videoLazyLoadingElement.dataset.src;
+		if(videoLazyLoadingElement.dataset.autoplay == 'true') {
+			videoLazyLoadingElement.autoplay = true;
+		}
+		videoLazyLoadingElement.load();
+		videoLazyLoadingElement.onloadeddata = function () {
+			videoLazyLoadingElement.classList.add('_loaded');
+		}
+		
+	})
+}
 
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </Animation> -=-=-=-=-=-=-=-=-=-=-=-=

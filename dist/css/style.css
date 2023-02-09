@@ -18,6 +18,10 @@ progress,sub,sup {
     box-sizing: border-box
 }
 
+.btn,.footer__header,.footer__nav--info-item,.header__nav--accent,.swiper-pagination,.swiper-zoom-container,.txt-center {
+    text-align: center
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -274,7 +278,7 @@ summary {
     display: block
 }
 
-.swiper-button-lock,.swiper-pagination-lock,.swiper-scrollbar-lock {
+.swiper-button-lock,.swiper-pagination-lock {
     display: none
 }
 
@@ -548,7 +552,6 @@ summary {
 
 .swiper-pagination {
     position: absolute;
-    text-align: center;
     transition: .3s opacity;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
@@ -625,6 +628,10 @@ button.swiper-pagination-bullet {
     appearance: none
 }
 
+.swiper-scrollbar,.swiper-scrollbar-drag {
+    border-radius: var(--swiper-scrollbar-border-radius,10px)
+}
+
 .swiper-pagination-clickable .swiper-pagination-bullet {
     cursor: pointer
 }
@@ -682,10 +689,6 @@ button.swiper-pagination-bullet {
     transition: .2s transform,.2s right
 }
 
-.swiper-fade.swiper-free-mode .swiper-slide,.swiper-free-mode>.swiper-wrapper {
-    transition-timing-function: ease-out
-}
-
 .swiper-pagination-fraction {
     color: var(--swiper-pagination-fraction-color,inherit)
 }
@@ -728,7 +731,6 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-scrollbar {
-    border-radius: var(--swiper-scrollbar-border-radius,10px);
     position: relative;
     -ms-touch-action: none;
     background: var(--swiper-scrollbar-bg-color,rgba(0,0,0,.1))
@@ -763,7 +765,6 @@ button.swiper-pagination-bullet {
     width: 100%;
     position: relative;
     background: var(--swiper-scrollbar-drag-bg-color,rgba(0,0,0,.5));
-    border-radius: var(--swiper-scrollbar-border-radius,10px);
     left: 0;
     top: 0
 }
@@ -772,13 +773,16 @@ button.swiper-pagination-bullet {
     cursor: move
 }
 
+.swiper-scrollbar-lock {
+    display: none
+}
+
 .swiper-zoom-container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center
+    align-items: center
 }
 
 .swiper-zoom-container>canvas,.swiper-zoom-container>img,.swiper-zoom-container>svg {
@@ -803,6 +807,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-free-mode>.swiper-wrapper {
+    transition-timing-function: ease-out;
     margin: 0 auto
 }
 
@@ -813,6 +818,10 @@ button.swiper-pagination-bullet {
 .swiper-grid-column>.swiper-wrapper {
     flex-wrap: wrap;
     flex-direction: column
+}
+
+.swiper-fade.swiper-free-mode .swiper-slide {
+    transition-timing-function: ease-out
 }
 
 .swiper-fade .swiper-slide {
@@ -961,10 +970,6 @@ body {
     overflow: hidden
 }
 
-.btn,.words-to-lines>span,.words-to-lines>span>span {
-    display: inline-block
-}
-
 body._overflow-visible {
     overflow: visible
 }
@@ -989,7 +994,20 @@ body._overflow-visible {
 
 section {
     position: relative;
-    z-index: 2
+    z-index: 2;
+    background: var(--white)
+}
+
+.bg-img,.btn::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0
+}
+
+.btn,.header__burger {
+    background: rgba(0,0,0,0)
 }
 
 .section-padding {
@@ -1002,11 +1020,6 @@ section {
 }
 
 .bg-img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1017,12 +1030,11 @@ section {
 }
 
 .btn {
-    text-align: center;
+    display: inline-block;
     padding: 17px 26px;
     font-size: .875rem;
     line-height: 100%;
     position: relative;
-    background: rgba(0,0,0,0);
     color: var(--black);
     border-radius: 5px;
     transition: color .2s ease-in-out,background .2s ease-in-out
@@ -1034,11 +1046,6 @@ section {
 
 .btn::after {
     content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
     border: 2px solid transparent;
     border-radius: 50px;
     background: var(--accent-gradient) border-box;
@@ -1295,7 +1302,7 @@ section {
 .main-title {
     font-family: var(--title-font);
     font-weight: 700;
-    font-size: 13vw;
+    font-size: 14.5vw;
     line-height: 100.4%;
     letter-spacing: -.035em;
     text-transform: uppercase;
@@ -1329,8 +1336,8 @@ section {
     font-weight: 700
 }
 
-.txt-center {
-    text-align: center
+.words-to-lines>span,.words-to-lines>span>span {
+    display: inline-block
 }
 
 .anim-fade-in,.anim-fade-up {
@@ -1411,6 +1418,10 @@ section {
     object-fit: contain
 }
 
+.intro__content,.intro__text {
+    max-width: 400px
+}
+
 .header__nav {
     position: absolute;
     left: 0;
@@ -1477,7 +1488,6 @@ section {
 }
 
 .header__nav--accent {
-    text-align: center;
     align-self: flex-end;
     flex: 1 1 100%
 }
@@ -1545,7 +1555,6 @@ section {
     position: relative;
     width: 26px;
     height: 22px;
-    background: rgba(0,0,0,0);
     z-index: 10;
     cursor: pointer;
     display: inline-block
@@ -1560,10 +1569,6 @@ section {
     transition: top .2s ease-in-out,-webkit-transform .2s ease-in-out;
     transition: transform .2s ease-in-out,top .2s ease-in-out;
     transition: transform .2s ease-in-out,top .2s ease-in-out,-webkit-transform .2s ease-in-out
-}
-
-.intro,.passion__bg,.passion__bg::after,.passion__image-slider {
-    background: var(--black)
 }
 
 .header__burger span:nth-child(1) {
@@ -1591,23 +1596,24 @@ section {
 }
 
 .intro__bg,.intro__bg--poster,.intro__bg::after {
-    position: absolute;
-    left: 0;
     top: 0;
     height: 100%;
+    position: absolute;
     width: 100%
 }
 
 .intro {
-    padding-top: calc(var(--height-header) + 10px);
-    padding-bottom: 38px;
-    min-height: 100vh;
+    padding-top: calc(var(--height-header) + 30px);
+    padding-bottom: calc(var(--height-header) + 30px);
+    min-height: var(--height-screen);
     display: flex;
     flex-direction: column;
-    justify-content: center
+    justify-content: center;
+    background: var(--black)
 }
 
 .intro__bg {
+    left: 0;
     z-index: -1;
     display: flex;
     align-items: center;
@@ -1616,6 +1622,7 @@ section {
 
 .intro__bg::after {
     content: "";
+    left: 0;
     background: rgba(0,0,0,.41)
 }
 
@@ -1625,17 +1632,13 @@ section {
 }
 
 .intro__bg--poster {
+    left: 0;
     -o-object-fit: cover;
     object-fit: cover
 }
 
-.intro__content {
-    max-width: 400px
-}
-
 .intro__text {
     font-size: .875rem;
-    max-width: 400px;
     line-height: 146.4%;
     padding-top: 15px;
     color: rgba(255,255,255,.62)
@@ -1644,6 +1647,9 @@ section {
 .intro__footer {
     display: flex;
     padding-top: 45px;
+    position: absolute;
+    left: 0;
+    bottom: 45px;
     align-items: flex-end;
     width: 100%
 }
@@ -1692,8 +1698,8 @@ section {
     right: 50%;
     width: 16px;
     height: 16px;
-    content: "";
-    border-radius: 50%
+    border-radius: 50%;
+    content: ""
 }
 
 .intro__link::after {
@@ -1926,6 +1932,13 @@ section {
     width: calc(100% - var(--space-width,0px))!important
 }
 
+.passion__bg,.passion__bg--element {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
 .partner {
     display: flex;
     flex-wrap: wrap
@@ -2010,16 +2023,10 @@ section {
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 625px;
+    min-height: 823px;
     padding-top: 110px;
     padding-bottom: 110px;
     flex: 1 1 auto
-}
-
-.passion__bg,.passion__bg img,.passion__bg::after,.passion__image-slider {
-    position: absolute;
-    width: 100%;
-    left: 0
 }
 
 @media(min-width:425px) {
@@ -2094,26 +2101,61 @@ section {
 }
 
 .passion__bg {
+    position: absolute;
+    z-index: -1
+}
+
+.passion__bg--element {
+    position: absolute;
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+@media(min-width:1000px) {
+    .passion__bg--element {
+        height: calc(100vh + 50px);
+        -webkit-transform: translate3d(0,var(--y),0);
+        transform: translate3d(0,var(--y),0);
+        background-attachment: local
+    }
+}
+
+.passion__bg::after,.passion__image-slider {
     top: 0;
-    height: 100%
+    background: var(--black);
+    width: 100%;
+    left: 0
 }
 
 .passion__bg::after {
     content: "";
-    top: 0;
+    position: absolute;
     height: 100%;
-    opacity: .4
+    opacity: .5
 }
 
 .passion__bg img {
-    top: -100px;
-    height: calc(100% + 200px);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: calc(100vh + 50px);
     -o-object-fit: cover;
     object-fit: cover
 }
 
+@media(min-width:1000px) {
+    .passion__bg img {
+        position: absolute;
+        top: -25px
+    }
+}
+
 .passion__image-slider {
-    top: 0;
+    position: absolute;
     height: 100%
 }
 
@@ -2194,7 +2236,7 @@ section {
 }
 
 .passion__content-slider--arrow svg {
-    width: 45%;
+    width: 100%;
     height: 100%;
     fill: transparent
 }
@@ -2269,13 +2311,17 @@ section {
     transition: opacity .2s ease-in-out
 }
 
-.passion__timer._slide-change::-webkit-progress-value {
-    -webkit-transition: width var(--slider-speed,3s) linear;
-    transition: width var(--slider-speed,3s) linear
+.passion__timer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--value);
+    height: 100%;
+    background: var(--white)
 }
 
-.passion__timer._slide-change::-moz-progress-bar {
-    -moz-transition: width var(--slider-speed,3s) linear;
+.passion__timer._slide-change::before {
     transition: width var(--slider-speed,3s) linear
 }
 
@@ -2690,8 +2736,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    text-align: center
+    flex-direction: column
 }
 
 .footer__title {
@@ -2740,7 +2785,6 @@ section {
 
 .footer__nav--info-item {
     flex: 1 1 100%;
-    text-align: center;
     padding: 17.5px 12px;
     max-width: 300px;
     font-style: normal
@@ -2787,7 +2831,8 @@ section {
     }
 
     .intro__footer {
-        padding-top: 48px
+        padding-top: 48px;
+        bottom: 48px
     }
 }
 
@@ -2820,8 +2865,8 @@ section {
     }
 
     .intro {
-        padding-top: calc(var(--height-header) + 10px);
-        padding-bottom: 38px
+        padding-top: calc(var(--height-header) + 40px);
+        padding-bottom: calc(var(--height-header) + 40px)
     }
 
     .footer__header {
@@ -2932,7 +2977,7 @@ section {
 
     .intro {
         padding-top: calc(var(--height-header) + 10px);
-        padding-bottom: 48px
+        padding-bottom: calc(var(--height-header) + 10px)
     }
 
     .intro__content {
@@ -2940,6 +2985,7 @@ section {
     }
 
     .intro__footer {
+        position: static;
         justify-content: flex-end
     }
 
