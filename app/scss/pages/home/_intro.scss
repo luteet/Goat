@@ -9,9 +9,10 @@
 	}
 
 	min-height: 750px;
+	min-height: max(750px, var(--height-screen-start));
 
 	@media (min-width: 600px) {
-		min-height: 640px;
+		min-height: max(640px, var(--height-screen-start));
 	}
 
 	@media (min-width: 605px) {
@@ -22,7 +23,7 @@
 	
 
 	@media (min-width: 960px) {
-		min-height: 570px;
+		min-height: max(570px, var(--height-screen-start));
 	}
 
 	@media (min-width: 965px) {
@@ -38,7 +39,7 @@
 	}
 
 	@media (min-width: 1300px) {
-		min-height: 700px;
+		min-height: max(700px, var(--height-screen-start));
 	}
 
 	

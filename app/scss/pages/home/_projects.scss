@@ -191,6 +191,8 @@
 		// .projects__card--logo
 
 		&--logo {
+			position: relative;
+			z-index: 2;
 		}
 
 		// .projects__card--text
@@ -207,6 +209,7 @@
 
 			color: #FFFFFF;
 			position: relative;
+			z-index: 2;
 
 			& .words-line-element {
 				transform: translate3d(0,0,0);
