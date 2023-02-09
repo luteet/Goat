@@ -970,7 +970,7 @@ body {
     overflow: hidden
 }
 
-body._overflow-visible {
+.passion__content-slide--title .words-line,.projects__slider,body._overflow-visible {
     overflow: visible
 }
 
@@ -1604,7 +1604,7 @@ section {
 .intro {
     padding-top: calc(var(--height-header) + 40px);
     padding-bottom: calc(var(--height-header) + 40px);
-    min-height: var(--height-screen-start);
+    min-height: 750px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1733,8 +1733,7 @@ section {
 }
 
 .projects__slider {
-    padding-top: 30px;
-    overflow: visible
+    padding-top: 30px
 }
 
 @media(min-width:605px) {
@@ -2273,7 +2272,6 @@ section {
 
 .passion__content-slide--title {
     color: var(--white);
-    max-width: 270px;
     line-height: 100.4%;
     letter-spacing: -.035em
 }
@@ -2283,9 +2281,13 @@ section {
     line-height: 146.4%
 }
 
-@media(min-width:475px) {
+@media(min-width:965px) {
     .passion__content-slide--title {
         max-width: 350px
+    }
+
+    .passion__content-slide--title._large-container {
+        max-width: 450px
     }
 }
 
@@ -2293,15 +2295,15 @@ section {
     .passion__content-slide--title {
         max-width: 370px
     }
+
+    .passion__content-slide--title._large-container {
+        max-width: 550px
+    }
 }
 
 .passion__content-slide--title .words-line-element {
     -webkit-transform: translate3d(0,50%,0);
     transform: translate3d(0,50%,0)
-}
-
-.passion__content-slide--title .words-line {
-    overflow: visible
 }
 
 .passion__footer {
@@ -2935,6 +2937,12 @@ section {
     }
 }
 
+@media (min-width:600px) {
+    .intro {
+        min-height: 640px
+    }
+}
+
 @media (min-width:605px) {
     .main,.section-padding {
         padding-bottom: 85px
@@ -3101,6 +3109,12 @@ section {
     .footer__nav--list {
         flex-wrap: wrap;
         height: 120px
+    }
+}
+
+@media (min-width:960px) {
+    .intro {
+        min-height: 570px
     }
 }
 
@@ -3352,6 +3366,12 @@ section {
 
     .footer__nav--block:first-child {
         padding-right: 120px
+    }
+}
+
+@media (min-width:1300px) {
+    .intro {
+        min-height: 700px
     }
 }
 

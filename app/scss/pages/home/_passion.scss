@@ -277,12 +277,21 @@
 
 		&--title {
 			color: var(--white);
-			max-width: 270px;
-			@media (min-width: 475px) {
+			/* max-width: 270px;
+			&._large-container {
+				max-width: 450px;
+			} */
+			@media (min-width: 965px) {
 				max-width: 350px;
+				&._large-container {
+					max-width: 450px;
+				}
 			}
 			@media (min-width: 1105px) {
 				max-width: 370px;
+				&._large-container {
+					max-width: 550px;
+				}
 			}
 			& .words-line-element {
 				transform: translate3d(0,50%,0);
