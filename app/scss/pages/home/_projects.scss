@@ -151,41 +151,59 @@
 			transition: transform .2s ease-in-out;
 			transform: translate3d(0,50px,0);
 
-		}
-
-		&--body._hover &--video img {
-			opacity: 0; visibility: hidden;
-		}
-
-		&--body._hover &--video-wrapper {
-			transform: translate3d(0,0,0);
-		}
-
-		&--video {
-			position: absolute;
-			left: 0; top: 0;
 			&::after {
 				content: '';
 				position: absolute;
 				left: 0; top: 0;
 				width: 100%; height: 100%;
 				background: rgba(0, 0, 0, 0.39);
+				z-index: 2;
 			}
+
+		}
+
+		
+
+		@media (min-width: 965px) {
+			&--body._hover &--video img {
+				opacity: 0; visibility: hidden;
+			}
+			&--body._hover &--video-wrapper {
+				transform: translate3d(0,0,0);
+			}
+			
+		}
+
+		&--body:hover &--video-wrapper {
+			transform: translate3d(0,0,0);
+		}
+
+		&--video {
+			position: absolute;
+			left: 0; top: 0;
+			z-index: -1;
+			
+			
 
 			height: 100%; width: 100%;
 			overflow: hidden;
 			
 			& video {
+				position: relative;
+				z-index: -3;
 				height: 100%; width: auto;
 				flex: 1 1 auto;
 			}
 			& img {
 				position: absolute;
 				left: 0; top: 0;
+				z-index: 1;
 				width: 100%; height: 100%;
 				object-fit: cover;
 				transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
 			}
+
+			
 		}
 
 		// .projects__card--logo

@@ -271,10 +271,6 @@
 
 		&--title {
 			color: var(--white);
-			/* max-width: 270px;
-			&._large-container {
-				max-width: 450px;
-			} */
 			max-width: 100%;
 			
 			@media (min-width: 425px) {
@@ -351,12 +347,6 @@
 		}
 		&._slide-change::before {
 			transition: width var(--slider-speed, 3s) linear;
-			/* &::-webkit-progress-value {
-				transition: width var(--slider-speed, 3s) linear;
-			}
-			&::-moz-progress-bar {
-				transition: width var(--slider-speed, 3s) linear;
-			} */
 		}
 
 		&::-webkit-progress-bar {

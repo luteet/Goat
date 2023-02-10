@@ -87,33 +87,40 @@ videoOnHover.forEach(videoOnHover => {
 	let blurCheck = false;
 	videoOnHover.addEventListener('mouseenter', function () {
 
-		const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
+		if(window.innerWidth > 965) {
+			const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
 
-		videoOnHover.classList.add('_hover');
-		if(video.classList.contains('video-lazy-loading')) {
-			if(video.classList.contains('_loaded')) {
+			videoOnHover.classList.add('_hover');
+			if(video.classList.contains('video-lazy-loading')) {
+				if(video.classList.contains('_loaded')) {
+					video.play();
+				}
+			} else {
 				video.play();
 			}
-		} else {
-			video.play();
+
 		}
 
 	})
 	videoOnHover.addEventListener('mouseleave', function () {
-		videoOnHover.classList.remove('_hover');
-		blurCheck = true;
 
-		const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
-
-		if(video.classList.contains('video-lazy-loading')) {
-			if(video.classList.contains('_loaded')) {
+		if(window.innerWidth > 965) {
+			videoOnHover.classList.remove('_hover');
+			blurCheck = true;
+	
+			const video = videoOnHover.querySelector('.video-wrapper').querySelector('.video-element');
+	
+			if(video.classList.contains('video-lazy-loading')) {
+				if(video.classList.contains('_loaded')) {
+					video.currentTime = 0;
+					video.pause()
+				}
+			} else {
 				video.currentTime = 0;
 				video.pause()
 			}
-		} else {
-			video.currentTime = 0;
-			video.pause()
 		}
+		
 		
 	})
 })
@@ -132,24 +139,6 @@ function wordsToSpan() {
 			}
 
 		})
-
-		/* textResult = [];
-
-		let textElements = text.querySelectorAll('span');
-
-		let count = 0;
-		textElements.forEach((textElement, index) => {
-			if (textElements[index - 1]) {
-				if (textElements[index - 1].offsetTop == textElement.offsetTop) {
-					textResult.push([textElement, count]);
-				} else {
-					count++;
-					textResult.push([textElement, count]);
-				}
-			} else {
-				textResult.push([textElement, count]);
-			}
-		}) */
 	})
 
 
@@ -168,7 +157,7 @@ function wordsToLines() {
 
 	function wordsToLinesFunc(resized) {
 		let resizedCheck = resized;
-		//console.log(resizedCheck)
+
 		Array.from(wordsToLinesArray).forEach(wordsToLinesArrayElement => {
 
 			const text = wordsToLinesArrayElement[1],
@@ -177,24 +166,12 @@ function wordsToLines() {
 
 			if (resizedCheck && placeContent.classList.contains('_animated')) placeContent.classList.add('_resized');
 			placeContent.classList.remove('_init');
-			/* const tags = wordsToLinesElement.querySelectorAll('*');
-			tags.forEach(tag => {
-				//let words = tag.textContent.trim().split(' ').map(s => `<span>${s}</span>`).join('');
-				let words = tag.textContent.trim().split(' ');
-				Array.from(words).forEach(word => {
-					tag.textContent += `${word.trim()} `;
-				})
-				
-			})
-			console.log(tags[0].textContent) */
-			//text.textContent = text.textContent.trim();
+
 			let tagCheck = false;
 			let textResult = text.trim().split(' ');
 
 			let hasTag = false, activeTag = false, activeImg, img;
 			placeContent.innerHTML = '';
-			//console.log(textResult)
-			//const isHTMLTag = (str) => /(^<([^>]+)>$)/i.test(str)
 
 			Array.from(textResult).forEach((textElement, index) => {
 
@@ -204,7 +181,7 @@ function wordsToLines() {
 				} else if (activeTag && typeTag == 'mark') {
 					textResult[index] = `<span><mark>${textElement}&nbsp;</mark></span>`;
 				}
-				//console.log(isHTMLTag(textElement))
+				
 				if (textElement.includes('<mark>') && textElement.includes('</mark>')) {
 
 					textElement = textElement.replace('<mark>', '');
@@ -242,42 +219,8 @@ function wordsToLines() {
 					activeImg = false;
 				}
 
-				//console.log(textElement)
-
-				/* if(textElement.includes('</mark>')) {
-	
-					if(!hasTag) {
-						elements[count] += textResult[index];
-					}
-					
-					textResult[index] = `<span>${elements[count]}&nbsp;</span>`;
-					
-				} else {
-					textResult[index] = `<span>${elements[count]}&nbsp;</span>`;
-				} */
-				/*  else if(activeTag && !hasTag) {
-				elements[count] += textResult[index];
-				delete textResult[index];
-			} else if(!activeTag) {
-				textResult[index] = `<span>${textElement}&nbsp;</span>`;
-				delete textResult[index];
-			} */
-
-				//hasTag = false;
-
-
-				//textResult[index] = `<span>${textElement}&nbsp;</span>`;
 			})
 
-
-			//console.log(elements)
-
-			/* Array.from(textResult).forEach((textElement, index) => {
-				if(textResult[index]) {
-					textResult[index] = `<span>${textElement}&nbsp;</span>`;
-				}
-			}) */
-			//console.log(textResult)
 			Array.from(textResult).forEach((textElement, index) => {
 				if (textElement) {
 					placeContent.insertAdjacentHTML("beforeend", textResult[index])
@@ -285,23 +228,7 @@ function wordsToLines() {
 
 			})
 
-
-
-			//console.log(textResult)
-
-			//console.log(textResult)
-			//text.insertAdjacentHTML("beforeend", textResult);
-
 			textResult = [];
-
-			/* let textElements = text.querySelectorAll('span');
-			textElements.forEach(textElement => {
-				let spanArray = textElement.textContent.split('');
-				//span = span.replace(/[\r\n]+/g, '\n');
-				if (spanArray[0] === ' ') {
-					textElement.remove();
-				}
-			}); */
 
 			let textElements = placeContent.querySelectorAll('span');
 
@@ -380,22 +307,7 @@ function wordsToLines() {
 	window.addEventListener('resize', function () {
 		wordsToLinesFunc(true);
 	})
-	/* wordsToLines.forEach(wordsToLinesElement => {
-		
-	}) */
 }
-
-
-
-/* const underlineText = document.querySelectorAll('.underline-text');
-underlineText.forEach(underlineTextElement => {
-	const spanWrapper = document.createElement('span');
-	spanWrapper.classList.add('underline-text-element');
-	const span = underlineTextElement.querySelector('span').cloneNode(true);
-	span.classList.add('underline-text-span');
-	spanWrapper.append(span);
-	underlineTextElement.insertAdjacentElement('afterbegin', spanWrapper)
-}) */
 
 const mouse = document.querySelectorAll('.mouse'),
 	openCursor = document.querySelector('.mouse._open-mode'),
@@ -460,29 +372,6 @@ document.addEventListener('pointerup', function () {
 })
 
 
-
-var maxSpeed = 0, prevSpeed = 0, maxPositiveAcc = 0, maxNegativeAcc = 0;
-setInterval(function () {
-	if (prevEvent && currentEvent) {
-		var movementX = Math.abs(currentEvent.screenX - prevEvent.screenX);
-		var movementY = Math.abs(currentEvent.screenY - prevEvent.screenY);
-		var movement = Math.sqrt(movementX * movementX + movementY * movementY);
-
-		/* document.getElementById("movementX").innerText=movementX;
-		document.getElementById("movementY").innerText=movementY;
-		document.getElementById("movement").innerText=Math.round(movement); */
-
-		//speed=movement/100ms= movement/0.1s= 10*movement/s
-		var speed = movement / 2;//current speed
-
-	}
-
-	prevEvent = currentEvent;
-	prevSpeed = speed;
-
-	html.style.setProperty('--speed', speed + 'px');
-}, 100);
-
 const videoElements = document.querySelectorAll('.video-auto-element');
 videoElements.forEach(videoElement => {
 	videoElement.addEventListener('play', function () {
@@ -523,15 +412,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			scrollCheck.setAttribute('aria-hidden', true);
 			body.append(scrollCheck);
 	
-			let scrollPositionX = 0, scrollPositionY = 0;
+			let scrollPositionY = 0;
 			let bodyScroll = document.getElementById("main-scrollbar");
 	
-	
-			function isHidden(el) {
-				return (el.offsetParent === null)
-			}
-	
-			let tl = gsap.timeline();
+			//let tl = gsap.timeline();
 			const animSection = document.querySelectorAll('.anim-section');
 			let animSectionArray = [];
 	
@@ -561,8 +445,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 					const duration = (Number(animArrayElement['element'].dataset.duration)) ? Number(animArrayElement['element'].dataset.duration) : 0.5,
 						delay = (Number(animArrayElement['element'].dataset.delay)) ? Number(animArrayElement['element'].dataset.delay) : 0,
-						stagger = (Number(animArrayElement['element'].dataset.stagger)) ? Number(animArrayElement['element'].dataset.stagger) : 0.05,
-						childrensReverse = (animArrayElement['element'].dataset.childrensReverse == "true") ? true : false;
+						stagger = (Number(animArrayElement['element'].dataset.stagger)) ? Number(animArrayElement['element'].dataset.stagger) : 0.05;
 	
 					if (animArrayElement['element'].classList.contains('anim-text')) {
 	
@@ -616,136 +499,6 @@ document.addEventListener('DOMContentLoaded', function () {
 							}
 						}, (index == 0) ? false : "-=1");
 	
-					} else if (animArrayElement['element'].classList.contains('anim-fade-right')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							transform: 'translate3d(0,0,0)',
-							startAt: {
-								transform: 'translate3d(-20px,0,0)',
-							},
-							duration: duration,
-							delay: delay,
-						}, (index == 0) ? false : "-=1");
-	
-					} else if (animArrayElement['element'].classList.contains('anim-fade-left')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							transform: 'translate3d(0,0,0)',
-							startAt: {
-								transform: 'translate3d(20px,0,0)',
-							},
-							duration: duration,
-							delay: delay,
-						}, (index == 0) ? false : "-=1");
-	
-					} else if (animArrayElement['element'].classList.contains('anim-zoom-out')) {
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							transform: 'scale3d(1,1,1)',
-							startAt: {
-								transform: 'scale3d(1.1,1.1,1)',
-								opacity: 0,
-							},
-							duration: duration,
-							ease: "power2.out",
-							delay: delay,
-						}, (index == 0) ? false : "-=1");
-					} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-right')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							duration: duration,
-							delay: delay,
-							onStart: function () {
-	
-								let childrens = Array.from(animArrayElement['element'].children);
-	
-								if (childrensReverse) childrens = childrens.reverse();
-	
-								gsap.to(childrens, {
-									transform: 'translate3d(0,0,0)',
-									opacity: 1,
-									startAt: {
-										transform: 'translate3d(-20px,0,0)',
-										opacity: 0,
-									},
-									duration: duration,
-									stagger: stagger,
-	
-								})
-							}
-						}, (index == 0) ? false : "-=1")
-	
-					} else if (animArrayElement['element'].classList.contains('anim-fade-progress-right')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) 100%, transparent 105%)',
-							startAt: {
-								maskImage: 'linear-gradient(90deg, rgba(72,172,240,1) -5%, transparent 0%)',
-							},
-							duration: duration,
-							delay: delay,
-						}, (index == 0) ? false : "-=1")
-	
-						/* tl.to(animArrayElement['element'], {
-							opacity: 1,
-							duration: duration,
-							delay: delay,
-						}, (index == 0) ? false : "-=1") */
-					} else if (animArrayElement['element'].classList.contains('anim-childrens-fade-left')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							duration: duration,
-							delay: delay,
-							onStart: function () {
-	
-								let childrens = Array.from(animArrayElement['element'].children);
-	
-								if (childrensReverse) childrens = childrens.reverse();
-	
-								gsap.to(childrens, {
-									transform: 'translate3d(0,0,0)',
-									opacity: 1,
-									startAt: {
-										transform: 'translate3d(20px,0,0)',
-										opacity: 0,
-									},
-									duration: duration,
-									stagger: stagger,
-	
-								})
-							}
-						}, (index == 0) ? false : "-=1")
-	
-					} else if (animArrayElement['element'].classList.contains('anim-zoom-in')) {
-	
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							transform: 'scale3d(1,1,1)',
-							startAt: {
-								transform: 'scale3d(0.7,0.7,1)',
-							},
-							duration: duration,
-							delay: delay,
-	
-						}, (index == 0) ? false : "-=1")
-	
-					} else if (animArrayElement['element'].classList.contains('anim-clip-down')) {
-						tl.to(animArrayElement['element'], {
-							opacity: 1,
-							clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-							startAt: {
-								clipPath: 'polygon(0 0, 100% 0, 100% 0%, 0 0%)',
-								opacity: 1,
-							},
-							ease: "power2.out",
-							duration: duration,
-							delay: delay,
-						}, (index == 0) ? false : "-=1");
 					}
 	
 				})
@@ -790,24 +543,13 @@ document.addEventListener('DOMContentLoaded', function () {
 					} else {
 						
 						const parallaxElementAnchor = document.querySelector(parallaxElement.dataset.anchor);
-						/* if (parallaxElementAnchor.offsetTop < scrollPositionY + window.innerHeight && parallaxElementAnchor.offsetTop + window.innerHeight > scrollPositionY) {
-							//console.log((scrollPositionY) + ' ' + (parallaxElementAnchor.offsetTop + window.innerHeight))
-							let result = (parallaxElementAnchor.offsetTop + window.innerHeight - scrollPositionY) / 5;
-							console.log(-result);
-							parallaxElement.style.setProperty('--y', -result  + 'px');
-						} */
-
 
 						if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight)) {
 							let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 7;
 							if (result >= parallaxElement.offsetHeight) result = parallaxElement.offsetHeight; else if (result <= -parallaxElement.offsetHeight) result = -parallaxElement.offsetHeight;
 		
 							parallaxElement.style.setProperty('--y', result  + 'px');
-							//scrollImage.style.transform = `translate3d(0,${result}px,0)`;
 						}
-						//console.log(document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect())
-						//let result = scrollPositionY - document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - (window.innerHeight * 4);
-						//parallaxElement.style.setProperty('--y', -document.querySelector(parallaxElement.dataset.anchor).getBoundingClientRect().top - header.offsetHeight + 'px');
 					}
 	
 				})
@@ -975,10 +717,6 @@ document.addEventListener('DOMContentLoaded', function () {
 							prevEl: '.swiper-button-prev',
 						},
 	
-						/* thumbs: {
-							swiper: passionImageSlider,
-						}, */
-	
 						on: {
 							init: function () {
 								html.style.setProperty('--slider-speed', autoplayDelay / 1000 + 's');
@@ -1003,7 +741,6 @@ document.addEventListener('DOMContentLoaded', function () {
 							slideChangeTransitionEnd: function () {
 								const 
 								activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
-								animateTitle = activeSlide.querySelector('.animate-title'),
 								proggresTimer = document.querySelector('.passion__timer._slide-change');
 								
 								
