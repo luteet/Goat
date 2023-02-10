@@ -770,7 +770,7 @@ document.addEventListener('DOMContentLoaded', function () {
 								animateTitle = activeSlide.querySelector('.animate-title'),
 								activeProggresTimer = activeSlide.querySelector('.passion__timer');
 	
-								if(animateTitle) {
+								if(animateTitle && windowSize > 965) {
 									const lines = animateTitle.querySelectorAll('.words-line-element');
 									gsap.to(lines, {
 										transform: 'translate3d(0,0,0)',
@@ -781,7 +781,6 @@ document.addEventListener('DOMContentLoaded', function () {
 								}
 	
 								activeProggresTimer.classList.add('_slide-change');
-								activeProggresTimer.style.setProperty('--value', '100%');
 							},
 							slideChangeTransitionEnd: function () {
 								const 
@@ -789,18 +788,17 @@ document.addEventListener('DOMContentLoaded', function () {
 								proggresTimer = document.querySelector('.passion__timer._slide-change');
 	
 								if (proggresTimer) {
-									proggresTimer.classList.remove('_slide-change');
-									proggresTimer.style.setProperty('--value', '0%');
+									setTimeout(() => {
+										proggresTimer.classList.remove('_slide-change');	
+									},500)
 	
 									const activeProggresTimer = activeSlide.querySelector('.passion__timer');
 	
 									activeProggresTimer.classList.add('_slide-change');
-									activeProggresTimer.style.setProperty('--value', '100%');
 								} else {
 									const activeProggresTimer = activeSlide.querySelector('.passion__timer');
 	
 									activeProggresTimer.classList.add('_slide-change');
-									activeProggresTimer.style.setProperty('--value', '100%');
 								}
 	
 							},
@@ -834,9 +832,9 @@ document.addEventListener('DOMContentLoaded', function () {
 											stagger: 0.07,
 										})
 									} else {
-										lines.forEach(line => {
+										/* lines.forEach(line => {
 											line.style.transform = 'translate3d(0,0,0)';
-										})
+										}) */
 									}
 									
 								}

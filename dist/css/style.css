@@ -2,7 +2,7 @@ body,html {
     -webkit-text-size-adjust: 100%
 }
 
-button,hr,input {
+.swiper-cube,.swiper-flip,button,hr,input {
     overflow: visible
 }
 
@@ -400,6 +400,10 @@ summary {
     width: var(--swiper-centered-offset-after)
 }
 
+.header__nav--body,.wrapper,body,html {
+    min-height: 100%
+}
+
 .swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
     -webkit-margin-before: var(--swiper-centered-offset-before);
     margin-block-start: var(--swiper-centered-offset-before)
@@ -572,10 +576,6 @@ summary {
 .swiper-pagination-bullets-dynamic {
     overflow: hidden;
     font-size: 0
-}
-
-.swiper-cube,.swiper-flip {
-    overflow: visible
 }
 
 .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
@@ -955,8 +955,7 @@ button.swiper-pagination-bullet {
 }
 
 body,html {
-    font-size: 16px;
-    min-height: 100%
+    font-size: 16px
 }
 
 body {
@@ -968,8 +967,8 @@ body {
     overflow: hidden
 }
 
-.main-title,.section-title,.title {
-    font-family: var(--title-font)
+.btn,.words-to-lines>span,.words-to-lines>span>span {
+    display: inline-block
 }
 
 body._overflow-visible {
@@ -978,10 +977,6 @@ body._overflow-visible {
 
 .header__burger,.intro__bg,.main,.toggle-btn,.words-line,.words-to-lines>span,body._active,body._popup-active {
     overflow: hidden
-}
-
-.wrapper {
-    min-height: 100%
 }
 
 .main {
@@ -1028,12 +1023,14 @@ section {
     z-index: -1
 }
 
+.btn,.toggle-btn {
+    position: relative
+}
+
 .btn {
-    display: inline-block;
     padding: 17px 26px;
     font-size: .875rem;
     line-height: 100%;
-    position: relative;
     background: rgba(0,0,0,0);
     color: var(--black);
     border-radius: 5px;
@@ -1109,26 +1106,28 @@ section {
 }
 
 .toggle-btn {
-    position: relative;
     flex-direction: column;
     align-items: center;
     border-radius: 50%;
     background: var(--light)
 }
 
-.mouse._cursor-drag,.mouse._open-mode,.toggle-btn span {
-    align-items: center;
-    border-radius: 50%
-}
-
 .toggle-btn span {
+    align-items: center;
     justify-content: center;
     position: absolute;
     left: 0;
     top: 0;
+    border-radius: 50%;
     transition: -webkit-transform .2s ease-in-out;
     transition: transform .2s ease-in-out;
     transition: transform .2s ease-in-out,-webkit-transform .2s ease-in-out
+}
+
+.mouse._cursor-drag,.mouse._open-mode {
+    display: none;
+    align-items: center;
+    border-radius: 50%
 }
 
 .toggle-btn span svg {
@@ -1197,7 +1196,6 @@ section {
 .mouse._open-mode {
     width: 87px;
     height: 87px;
-    display: none;
     justify-content: center;
     background: rgba(255,0,0,.55);
     -webkit-transform: translate3d(-50%,-50%,0) scale(1);
@@ -1237,7 +1235,6 @@ section {
     width: 178px;
     height: 178px;
     background: var(--black);
-    display: none;
     justify-content: center;
     color: var(--white);
     -webkit-transform: translate3d(-50%,-50%,0) scale(1);
@@ -1304,6 +1301,7 @@ section {
 }
 
 .main-title {
+    font-family: var(--title-font);
     font-weight: 700;
     font-size: 13.5vw;
     line-height: 100.4%;
@@ -1314,6 +1312,7 @@ section {
 }
 
 .title {
+    font-family: var(--title-font);
     font-weight: 500;
     font-size: 2.8125rem;
     line-height: 107.4%;
@@ -1334,11 +1333,8 @@ section {
 }
 
 .section-title {
+    font-family: var(--title-font);
     font-weight: 700
-}
-
-.words-to-lines>span,.words-to-lines>span>span {
-    display: inline-block
 }
 
 .anim-fade-in,.anim-fade-up {
@@ -1424,6 +1420,10 @@ section {
     object-fit: contain
 }
 
+.intro__content,.intro__text {
+    max-width: 400px
+}
+
 .header__nav {
     position: absolute;
     left: 0;
@@ -1446,8 +1446,7 @@ section {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--height-header) 40px 52px;
-    min-height: 100%
+    padding: var(--height-header) 40px 52px
 }
 
 .header__nav--body::before {
@@ -1600,6 +1599,7 @@ section {
 
 .intro__bg,.intro__bg--poster,.intro__bg::after {
     top: 0;
+    height: 100%;
     position: absolute;
     left: 0;
     width: 100%
@@ -1617,7 +1617,6 @@ section {
 }
 
 .intro__bg {
-    height: 100%;
     z-index: -1;
     display: flex;
     align-items: center;
@@ -1626,7 +1625,6 @@ section {
 
 .intro__bg::after {
     content: "";
-    height: 100%;
     background: rgba(0,0,0,.41)
 }
 
@@ -1636,18 +1634,12 @@ section {
 }
 
 .intro__bg--poster {
-    height: 100%;
     -o-object-fit: cover;
     object-fit: cover
 }
 
-.intro__content {
-    max-width: 400px
-}
-
 .intro__text {
     font-size: .875rem;
-    max-width: 400px;
     line-height: 146.4%;
     padding-top: 15px;
     color: rgba(255,255,255,.62)
@@ -2059,7 +2051,6 @@ section {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
     height: 100%
 }
 
@@ -2135,11 +2126,13 @@ section {
 }
 
 .passion__bg {
+    width: 100%;
     overflow: hidden;
     z-index: -1
 }
 
 .passion__bg--element {
+    width: 100%;
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -2371,8 +2364,15 @@ section {
 }
 
 .passion__content-slide--title .words-line-element {
-    -webkit-transform: translate3d(0,50%,0);
-    transform: translate3d(0,50%,0)
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0)
+}
+
+@media(min-width:965px) {
+    .passion__content-slide--title .words-line-element {
+        -webkit-transform: translate3d(0,50%,0);
+        transform: translate3d(0,50%,0)
+    }
 }
 
 .passion__content-slide--title .words-line {
@@ -2398,15 +2398,42 @@ section {
 .passion__timer::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: -50%;
     top: 0;
-    width: var(--value);
+    width: 100%;
     height: 100%;
-    background: var(--white)
+    background: var(--white);
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1)
+}
+
+@-webkit-keyframes slideChangeTimer {
+    from {
+        -webkit-transform: scale(0,1);
+        transform: scale(0,1)
+    }
+
+    to {
+        -webkit-transform: scale(2,1);
+        transform: scale(2,1)
+    }
+}
+
+@keyframes slideChangeTimer {
+    from {
+        -webkit-transform: scale(0,1);
+        transform: scale(0,1)
+    }
+
+    to {
+        -webkit-transform: scale(2,1);
+        transform: scale(2,1)
+    }
 }
 
 .passion__timer._slide-change::before {
-    transition: width var(--slider-speed,3s) linear
+    -webkit-animation: slideChangeTimer var(--slider-speed) linear 0s 1 normal forwards;
+    animation: slideChangeTimer var(--slider-speed) linear 0s 1 normal forwards
 }
 
 .passion__timer::-webkit-progress-bar {

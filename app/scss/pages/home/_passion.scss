@@ -313,7 +313,10 @@
 				}
 			}
 			& .words-line-element {
-				transform: translate3d(0,50%,0);
+				transform: translate3d(0,0%,0);
+				@media (min-width: 965px) {
+					transform: translate3d(0,50%,0);
+				}
 			}
 			& .words-line {
 				overflow: visible;
@@ -341,12 +344,21 @@
 		&::before {
 			content: '';
 			position: absolute;
-			left: 0; top: 0;
-			width: var(--value); height: 100%;
+			left: -50%; top: 0;
+			width: 100%; height: 100%;
 			background: var(--white);
+			transform: scale(0,1);
+		}
+		@keyframes slideChangeTimer {
+			from {
+				transform: scale(0,1);
+			}
+			to {
+				transform: scale(2,1);
+			}
 		}
 		&._slide-change::before {
-			transition: width var(--slider-speed, 3s) linear;
+			animation: slideChangeTimer var(--slider-speed) linear 0s 1 normal forwards;
 		}
 
 		&::-webkit-progress-bar {
