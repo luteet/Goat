@@ -2,8 +2,12 @@ body,html {
     -webkit-text-size-adjust: 100%
 }
 
-.swiper-cube,.swiper-flip,button,hr,input {
+button,hr,input {
     overflow: visible
+}
+
+.partner__section-name.section-min-title,button,select {
+    text-transform: none
 }
 
 progress,sub,sup {
@@ -142,10 +146,6 @@ button,input,optgroup,select,textarea {
     font-size: 100%;
     line-height: 1.15;
     margin: 0
-}
-
-button,select {
-    text-transform: none
 }
 
 [type=button],[type=reset],[type=submit],button {
@@ -400,10 +400,6 @@ summary {
     width: var(--swiper-centered-offset-after)
 }
 
-.header__nav--body,.wrapper,body,html {
-    min-height: 100%
-}
-
 .swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
     -webkit-margin-before: var(--swiper-centered-offset-before);
     margin-block-start: var(--swiper-centered-offset-before)
@@ -578,6 +574,10 @@ summary {
     font-size: 0
 }
 
+.swiper-cube,.swiper-flip {
+    overflow: visible
+}
+
 .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
     -webkit-transform: scale(.33);
     transform: scale(.33);
@@ -626,10 +626,6 @@ button.swiper-pagination-bullet {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none
-}
-
-.swiper-scrollbar,.swiper-scrollbar-drag {
-    border-radius: var(--swiper-scrollbar-border-radius,10px)
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
@@ -689,6 +685,10 @@ button.swiper-pagination-bullet {
     transition: .2s transform,.2s right
 }
 
+.swiper-fade.swiper-free-mode .swiper-slide,.swiper-free-mode>.swiper-wrapper {
+    transition-timing-function: ease-out
+}
+
 .swiper-pagination-fraction {
     color: var(--swiper-pagination-fraction-color,inherit)
 }
@@ -731,6 +731,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-scrollbar {
+    border-radius: var(--swiper-scrollbar-border-radius,10px);
     position: relative;
     -ms-touch-action: none;
     background: var(--swiper-scrollbar-bg-color,rgba(0,0,0,.1))
@@ -765,6 +766,7 @@ button.swiper-pagination-bullet {
     width: 100%;
     position: relative;
     background: var(--swiper-scrollbar-drag-bg-color,rgba(0,0,0,.5));
+    border-radius: var(--swiper-scrollbar-border-radius,10px);
     left: 0;
     top: 0
 }
@@ -807,7 +809,6 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-free-mode>.swiper-wrapper {
-    transition-timing-function: ease-out;
     margin: 0 auto
 }
 
@@ -818,10 +819,6 @@ button.swiper-pagination-bullet {
 .swiper-grid-column>.swiper-wrapper {
     flex-wrap: wrap;
     flex-direction: column
-}
-
-.swiper-fade.swiper-free-mode .swiper-slide {
-    transition-timing-function: ease-out
 }
 
 .swiper-fade .swiper-slide {
@@ -958,7 +955,8 @@ button.swiper-pagination-bullet {
 }
 
 body,html {
-    font-size: 16px
+    font-size: 16px;
+    min-height: 100%
 }
 
 body {
@@ -970,12 +968,20 @@ body {
     overflow: hidden
 }
 
+.main-title,.section-title,.title {
+    font-family: var(--title-font)
+}
+
 body._overflow-visible {
     overflow: visible
 }
 
 .header__burger,.intro__bg,.main,.toggle-btn,.words-line,.words-to-lines>span,body._active,body._popup-active {
     overflow: hidden
+}
+
+.wrapper {
+    min-height: 100%
 }
 
 .main {
@@ -998,14 +1004,6 @@ section {
     background: var(--white)
 }
 
-.bg-img,.btn::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0
-}
-
 .section-padding {
     padding-top: 74px;
     padding-bottom: 74px
@@ -1016,6 +1014,11 @@ section {
 }
 
 .bg-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1043,6 +1046,11 @@ section {
 
 .btn::after {
     content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid transparent;
     border-radius: 50px;
     background: var(--accent-gradient) border-box;
@@ -1108,22 +1116,19 @@ section {
     background: var(--light)
 }
 
-.toggle-btn span {
+.mouse._cursor-drag,.mouse._open-mode,.toggle-btn span {
     align-items: center;
+    border-radius: 50%
+}
+
+.toggle-btn span {
     justify-content: center;
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: 50%;
     transition: -webkit-transform .2s ease-in-out;
     transition: transform .2s ease-in-out;
     transition: transform .2s ease-in-out,-webkit-transform .2s ease-in-out
-}
-
-.mouse._cursor-drag,.mouse._open-mode {
-    display: none;
-    align-items: center;
-    border-radius: 50%
 }
 
 .toggle-btn span svg {
@@ -1192,6 +1197,7 @@ section {
 .mouse._open-mode {
     width: 87px;
     height: 87px;
+    display: none;
     justify-content: center;
     background: rgba(255,0,0,.55);
     -webkit-transform: translate3d(-50%,-50%,0) scale(1);
@@ -1231,6 +1237,7 @@ section {
     width: 178px;
     height: 178px;
     background: var(--black);
+    display: none;
     justify-content: center;
     color: var(--white);
     -webkit-transform: translate3d(-50%,-50%,0) scale(1);
@@ -1297,7 +1304,6 @@ section {
 }
 
 .main-title {
-    font-family: var(--title-font);
     font-weight: 700;
     font-size: 13.5vw;
     line-height: 100.4%;
@@ -1308,7 +1314,6 @@ section {
 }
 
 .title {
-    font-family: var(--title-font);
     font-weight: 500;
     font-size: 2.8125rem;
     line-height: 107.4%;
@@ -1329,7 +1334,6 @@ section {
 }
 
 .section-title {
-    font-family: var(--title-font);
     font-weight: 700
 }
 
@@ -1442,7 +1446,8 @@ section {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--height-header) 40px 52px
+    padding: var(--height-header) 40px 52px;
+    min-height: 100%
 }
 
 .header__nav--body::before {
@@ -1596,6 +1601,7 @@ section {
 .intro__bg,.intro__bg--poster,.intro__bg::after {
     top: 0;
     position: absolute;
+    left: 0;
     width: 100%
 }
 
@@ -1611,7 +1617,6 @@ section {
 }
 
 .intro__bg {
-    left: 0;
     height: 100%;
     z-index: -1;
     display: flex;
@@ -1621,7 +1626,6 @@ section {
 
 .intro__bg::after {
     content: "";
-    left: 0;
     height: 100%;
     background: rgba(0,0,0,.41)
 }
@@ -1632,7 +1636,6 @@ section {
 }
 
 .intro__bg--poster {
-    left: 0;
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover
@@ -1906,11 +1909,6 @@ section {
     }
 }
 
-.projects__card--body:hover .projects__card--video-wrapper {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0)
-}
-
 .projects__card--video {
     position: absolute;
     left: 0;
@@ -1978,10 +1976,6 @@ section {
 
 .partner__logo {
     padding-right: 18px
-}
-
-.partner__section-name.section-min-title {
-    text-transform: none
 }
 
 .partner__wrapper {

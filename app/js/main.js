@@ -80,6 +80,51 @@ body.addEventListener('click', function (event) {
 
 	// =-=-=-=-=-=-=-=-=-=- </learn more card> -=-=-=-=-=-=-=-=-=-=-
 
+
+
+	// =-=-=-=-=-=-=-=-=-=- <animate-decor-lines> -=-=-=-=-=-=-=-=-=-=-
+
+	const animateDecorLines = $('.animate-decor-lines'),
+		  animateDecorLineHover = document.querySelector('.animate-decor-lines._hover');
+
+	if(animateDecorLines) {
+
+		const lines = animateDecorLines.querySelectorAll('.words-decor-line'),
+		spaceSpan = document.createElement('span');
+		spaceSpan.innerHTML = '&nbsp;';
+		spaceSpan.style.display = 'inline-block';
+		spaceSpan.style.position = 'absolute';
+		spaceSpan.style.pointerEvents = 'none';
+
+		animateDecorLines.append(spaceSpan)
+
+		const spaceWidth = spaceSpan.offsetWidth;
+
+		spaceSpan.remove();
+		animateDecorLines.style.setProperty('--space-width', spaceWidth + 'px');
+
+		if(!animateDecorLines.classList.contains('_hover')) {
+			animateDecorLines.classList.add('_hover');
+			gsap.to(lines, {
+				transform: 'scale(2,1)',
+				duration: 0.5,
+				stagger: 0.2,
+			})
+			
+		}
+
+		
+	} else if(animateDecorLineHover) {
+		animateDecorLineHover.classList.remove('_hover');
+		gsap.to(lines, {
+			transform: 'scale(0,1)',
+			duration: 0.5,
+			stagger: 0.2,
+		})
+	}
+
+	// =-=-=-=-=-=-=-=-=-=- </animate-decor-lines> -=-=-=-=-=-=-=-=-=-=-
+
 })
 
 const videoOnHover = document.querySelectorAll('.video-on-hover');
@@ -742,8 +787,6 @@ document.addEventListener('DOMContentLoaded', function () {
 								const 
 								activeSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-active'),
 								proggresTimer = document.querySelector('.passion__timer._slide-change');
-								
-								
 	
 								if (proggresTimer) {
 									proggresTimer.classList.remove('_slide-change');
@@ -769,7 +812,7 @@ document.addEventListener('DOMContentLoaded', function () {
 								setTimeout(() => {
 									const 
 									prevSlide = passionContentSlider.wrapperEl.querySelector('.swiper-slide-prev'),
-									animateTitlePrev = prevSlide.querySelector('.animate-title');
+									animateTitlePrev = (prevSlide) ? prevSlide.querySelector('.animate-title') : false;
 									if(animateTitlePrev) {
 										const lines = animateTitlePrev.querySelectorAll('.words-line-element');
 										gsap.to(lines, {
@@ -783,12 +826,19 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 								if(animateTitle) {
 									const lines = animateTitle.querySelectorAll('.words-line-element');
-									gsap.to(lines, {
-										transform: 'translate3d(0,0,0)',
-										opacity: 1,
-										duration: 0.5,
-										stagger: 0.07,
-									})
+									if(windowSize > 965) {
+										gsap.to(lines, {
+											transform: 'translate3d(0,0,0)',
+											opacity: 1,
+											duration: 0.5,
+											stagger: 0.07,
+										})
+									} else {
+										lines.forEach(line => {
+											line.style.transform = 'translate3d(0,0,0)';
+										})
+									}
+									
 								}
 							}
 						}
