@@ -1,0 +1,24 @@
+@@include("html/_header.html", {
+	"class": " _dark"
+})
+
+	<main class="main">
+		<section class="projects-page section-container section-margin-bottom section-start">
+			<div class="projects-page__header">
+				<h1 class="projects-page__title main-title _dark">
+					A DEEP DIVE INTO OUR CASES
+				</h1>
+			</div>
+			<div class="projects-page__wrapper">
+				<ul class="projects-page__list">
+					@@loop("html/_projects-cards.html", [
+						{},
+						{},
+						{},
+					])
+				</ul>
+			</div>
+		</section>
+	</main>
+
+@@include("html/_footer.html")

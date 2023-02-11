@@ -1,7 +1,7 @@
 
 const body = document.querySelector('body'),
 	html = document.querySelector('html'),
-	menu = document.querySelectorAll('.header__burger, .header__nav, body'),
+	menu = document.querySelectorAll('.header__burger, .header__nav, .header, body'),
 	burger = document.querySelector('.header__burger'),
 	header = document.querySelector('.header');
 
@@ -124,6 +124,78 @@ body.addEventListener('click', function (event) {
 	}
 
 	// =-=-=-=-=-=-=-=-=-=- </animate-decor-lines> -=-=-=-=-=-=-=-=-=-=-
+
+
+
+	// =-=-=-=-=-=-=-=-=-=- <FAQ> -=-=-=-=-=-=-=-=-=-=-
+
+	const faqItemHeader = $('.faq__item--header');
+	if(faqItemHeader) {
+
+		if(!faqItemHeader.classList.contains('_animating')) {
+			faqItemHeader.classList.add('_animating');
+			
+			const faqItem = faqItemHeader.closest('.faq__item'),
+			  faqItemContent = faqItem.querySelector('.faq__item--content');
+
+		
+			/* faqItemContent.style.display = 'block';
+			const height = faqItemContent.offsetHeight; */
+			
+
+			if(faqItem.classList.contains('_active')) {
+
+				faqItemContent.style.transitionProperty = 'height';
+				const height = faqItemContent.offsetHeight;
+				faqItemContent.style.height = height + 'px';
+				setTimeout(() => {
+					faqItemContent.style.height = 0;
+					faqItem.classList.remove('_active')
+					gsap.to(faqItemContent.querySelectorAll('.word-span'), {
+						transform: 'translate3d(0,50%,0)',
+						opacity: 0,
+						duration: 0.2,
+						stagger: 0,
+					})
+					setTimeout(() => {
+						faqItemContent.style.removeProperty('transition-property')
+						faqItemContent.style.display = 'none';
+						faqItemContent.style.removeProperty('height')
+						faqItemHeader.classList.remove('_animating');
+					},300)
+				},0)
+
+			} else {
+
+				faqItem.classList.add('_active');
+				faqItemContent.style.removeProperty('height');
+				faqItemContent.style.display = 'block';
+				const height = faqItemContent.offsetHeight;
+				faqItemContent.style.height = 0;
+				faqItemContent.style.transitionProperty = 'height';
+				
+				setTimeout(() => {
+					faqItemContent.style.height = height + 'px';
+					gsap.to(faqItemContent.querySelectorAll('.word-span'), {
+						transform: 'translate3d(0,0,0)',
+						opacity: 1,
+						duration: 0.2,
+						stagger: 0.01,
+					})
+					setTimeout(() => {
+						faqItemContent.style.removeProperty('transition-property')
+						faqItemContent.style.removeProperty('height');
+						faqItemHeader.classList.remove('_animating');
+					},300)
+				},0)
+				
+			}
+		}
+
+		
+	}
+
+	// =-=-=-=-=-=-=-=-=-=- </FAQ> -=-=-=-=-=-=-=-=-=-=-
 
 })
 
@@ -574,6 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				animScroll();
 	
 				parallaxElementsFunc(Math.abs(scrollCheck.getBoundingClientRect().y));
+				horizontalParallax(Math.abs(scrollCheck.getBoundingClientRect().y));
 			})
 	
 			function parallaxElementsFunc(scrollPositionY) {
@@ -599,8 +672,24 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 				})
 			}
+
+			function horizontalParallax(scrollPositionY) {
+				horizontalParallaxElements.forEach(horizontalParallaxElement => {
 	
-			const parallaxElements = document.querySelectorAll('.anim-parallax-element');
+					const parallaxElementAnchor = document.querySelector(horizontalParallaxElement.dataset.anchor);
+
+					if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight)) {
+						let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 3;
+						if (result >= window.innerHeight) result = horizontalParallaxElement.offsetHeight; else if (result <= -window.innerHeight) result = -horizontalParallaxElement.offsetHeight;
+	
+						horizontalParallaxElement.style.setProperty('--x', horizontalParallaxElement.classList.contains('_reverse') ? -result + 'px' : result  + 'px');
+					}
+	
+				})
+			}
+	
+			const parallaxElements = document.querySelectorAll('.anim-parallax-element'),
+			horizontalParallaxElements = document.querySelectorAll('.anim-horizontal-parallax-element');
 	
 	
 			function smoothScrollbarInit() {
@@ -618,6 +707,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					if (body.classList.contains('_active')) bodyScrollBar.setPosition(0, 0, 0);
 	
 					parallaxElementsFunc(scrollPositionY);
+					horizontalParallax(scrollPositionY);
 	
 					animScroll()
 	
@@ -846,7 +936,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	
 				let clientsSlider;
-				if (document.querySelector('.projects__slider')) {
+				if (document.querySelector('.clients__slider')) {
 					clientsSlider = new Swiper('.clients__slider', {
 						spaceBetween: 24,
 						slidesPerView: "auto",
@@ -855,13 +945,29 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	
 				let latesUpdatesSlider;
-				if (document.querySelector('.projects__slider')) {
+				if (document.querySelector('.lates-updates__slider')) {
 					latesUpdatesSlider = new Swiper('.lates-updates__slider', {
 						spaceBetween: 24,
 						slidesPerView: "auto",
 					});
 				}
-	
+
+				/* let wordsSlider;
+				if(document.querySelector('.words__line')) {
+					document.querySelectorAll('.words__line').forEach(slider => {
+						new Swiper(slider, {
+							spaceBetween: 0,
+							slidesPerView: "auto",
+							slidesPerGroupAuto: true,
+							loop: true,
+							allowTouchMove: false,
+							loopAdditionalSlides: 3,
+							
+							speed: 6000,
+						});
+					})
+					
+				} */
 	
 				// =-=-=-=-=-=-=-=-=-=-=-=- </slider> -=-=-=-=-=-=-=-=-=-=-=-=
 	

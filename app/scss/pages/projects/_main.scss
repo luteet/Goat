@@ -1,0 +1,112 @@
+.projects-page {
+
+    // .projects-page__header
+
+    &__header {
+        
+        max-width: 95%;
+
+        @media (min-width: 405px) {
+            max-width: 89.223827%;
+        }
+
+        @media (min-width: 965px) {
+            max-width: 800px;
+        }
+        
+        @media (min-width: 1105px) {
+            padding-left: 10px;
+        }
+        
+        @media (min-width: 1285px) {
+            padding-left: 0;
+        }
+    }
+
+    // .projects-page__title
+
+    &__title {
+    }
+
+    // .projects-page__wrapper
+
+    &__wrapper {
+        padding-top: 161px;
+        
+        @media (min-width: 895px) {
+            padding-top: 153px;
+        }
+        @media (min-width: 965px) {
+            padding-top: 130px;
+        }
+        
+        @media (min-width: 1105px) {
+            padding-left: 10px; padding-right: 10px;
+        }
+        @media (min-width: 1285px) {
+            padding-left: 0; padding-right: 0;
+        }
+    }
+
+    // .projects-page__list
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -18px -11px;
+        @media (min-width: 475px) {
+            margin: -17.5px -11px;
+        }
+        @media (min-width: 605px) {
+            margin: -11px;
+        }
+        @media (min-width: 895px) {
+            margin: -12px;
+        }
+        @media (min-width: 1105px) {
+            margin: -14.5px -12px;
+        }
+        & > * {
+            & > * {
+                min-height: 125.5vw;
+                @media (min-width: 475px) {
+                    min-height: 501px;
+                }
+            }
+            flex: 0 1 100%;
+            width: 100%;
+            min-height: 501px;
+            padding: 18px 11px;
+            @media (min-width: 475px) {
+                padding: 17.5px 11px;
+                
+            }
+            @media (min-width: 605px) {
+                padding: 11px;
+            }
+            @media (min-width: 895px) {
+                padding: 12px;
+                flex: 0 1 50%;
+                width: 50%;
+            }
+            @media (min-width: 1105px) {
+                flex: 0 1 33.333%;
+                padding: 14.5px 12px;
+                width: 33.333%;
+            }
+
+            
+            &:nth-child(2) {
+                @media (min-width: 1105px) {
+                    margin-top: 29px;
+                }
+            }
+
+            &:nth-child(3n + 4), &:nth-child(3n + 6) {
+                @media (min-width: 1105px) {
+                    margin-top: -29px;    
+                }
+            }
+        }
+    }
+}

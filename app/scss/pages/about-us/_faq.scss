@@ -1,0 +1,135 @@
+.faq {
+
+	// .faq__strange-title
+
+	&__strange-title {
+		text-transform: uppercase;
+
+		font-size: 0.875rem;
+		@media (min-width: 965px) {
+			font-size: 1rem;
+			margin-left: calc(33% + 24px);
+		}
+	}
+
+	// .faq__list
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+
+		padding-top: 66px;
+	}
+
+	// .faq__item
+
+	&__item {
+		
+		padding: 46px 0;
+		border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+		@media (min-width: 475px) {
+			padding: 54px 0;
+		}
+
+		@media (min-width: 965px) {
+			display: grid;
+			grid-template-columns: calc(33% + 24px) auto;
+		}
+
+		@media (min-width: 1105px) {
+			padding: 66px 0;
+		}
+
+		// .faq__item--title
+
+		&--title {
+			font-weight: 500;
+			font-size: 2.125rem;
+			padding-bottom: 22px;
+			line-height: 112.4%;
+			letter-spacing: -0.035em;
+			color: #000000;
+
+			@media (min-width: 965px) {
+				grid-column: 1; grid-row: 0/2;
+				font-size: 1.625rem;
+				max-width: 250px;
+				padding-bottom: 0px;
+			}
+
+			@media (min-width: 1105px) {
+				font-size: 1.875rem;
+			}
+		}
+
+		// .faq__item--header
+
+		&--header {
+
+			padding-bottom: 16px;
+
+			@media (min-width: 965px) {
+				grid-column: 2; grid-row: 1;
+				padding-bottom: 45px;
+			}
+			
+			position: relative;
+
+			user-select: none;
+			cursor: pointer;
+
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&::after {
+				content: '';
+				width: 17px; height: 17px;
+				background: url("data:image/svg+xml,%3Csvg viewBox='0 0 17 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 7.79688H17V9.29688H0V7.79688Z' fill='black'/%3E%3Cpath d='M8.00001 17.2969V0.296875H9.50001V17.2969H8.00001Z' fill='black'/%3E%3C/svg%3E%0A")
+				center / contain no-repeat;
+				display: inline-block;
+				transition: transform .2s ease-in-out;
+			}
+			
+		}
+
+		&._active &--header::after {
+			transform: rotate(45deg);
+		}
+
+		// .faq__item--subtitle
+
+		&--subtitle {
+			color: rgba(0, 0, 0, 0.35);
+			text-transform: uppercase;
+			font-size: 0.875rem;
+			@media (min-width: 965px) {
+				font-size: 1rem;
+			}
+		}
+
+		// .faq__item--content
+
+		&--content {
+
+			grid-column: 2;
+			
+			display: none;
+			overflow: hidden;
+			transition-duration: .3s;
+			transition-timing-function: ease-in-out;
+
+			&-body {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			max-width: 600px;
+
+			& .word-span {
+				transform: translate3d(0,50%,0);
+				opacity: 0;
+			}
+		}
+	}
+}
