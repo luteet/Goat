@@ -4427,7 +4427,9 @@ section {
     .faq__item--title {
         -ms-grid-column: 1;
         grid-column: 1;
-        grid-row: 0/2;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        grid-row: 1/2;
         font-size: 1.625rem;
         max-width: 250px;
         padding-bottom: 0
