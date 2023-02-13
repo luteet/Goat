@@ -1,0 +1,32 @@
+@@include("html/_header.html", {
+	"class": " _dark"
+})
+
+	<main class="main">
+		<section class="blog section-container section-margin-bottom section-start anim-section">
+			<div class="blog__header">
+				<h1 class="blog__title main-title _dark anim-element anim-text words-to-lines" data-index="1" data-delay="0.3">
+					We talk
+				</h1>
+				<h2 class="blog__subtitle anim-element anim-fade-in" data-index="2" data-delay="0.7">
+					Free exchange
+				</h2>
+			</div>
+			<div class="blog__wrapper anim-element anim-fade-in" data-index="3" data-delay="0.6">
+				<ul class="blog__list">
+					@@loop("html/_blog-card.html", [
+						{},
+						{},
+						{},
+
+						{},
+						{},
+						{},
+						
+					])
+				</ul>
+			</div>
+		</section>
+	</main>
+
+@@include("html/_footer.html")

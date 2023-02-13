@@ -1,0 +1,150 @@
+.blog {
+
+	// .blog__header
+
+	&__header {
+	}
+
+	// .blog__title
+
+	&__title {
+	}
+
+	// .blog__subtitle
+
+	&__subtitle {
+		text-transform: uppercase;
+		padding-top: 13px;
+
+		font-size: 0.875rem;
+	}
+
+	// .blog__wrapper
+
+	&__wrapper {
+	}
+
+	// .blog__list
+
+	&__list {
+		padding-top: 161px;
+
+		display: flex;
+		flex-wrap: wrap;
+
+		margin: -29px -12px;
+		@media (min-width: 605px) {
+			margin: -27.5px -12px;
+		}
+		@media (min-width: 895px) {
+			margin: -33.5px -12px;
+			padding-top: 130px;
+		}
+		
+	}
+
+	// .blog__card
+
+	&__card {
+
+		margin: 29px 12px;
+		flex: 1 1 calc(100% - 24px);
+		@media (min-width: 605px) {
+			flex: 0 1 calc(50% - 24px);
+			margin: 27.5px 12px;
+		}
+		
+		@media (min-width: 895px) {
+			margin: 33.5px 12px;
+		}
+		@media (min-width: 1105px) {
+			flex: 0 1 calc(33% - 24px);
+		}
+		
+
+		// .blog__card--body
+
+		&--body {
+		}
+
+		&--body._hover &--video img {
+			opacity: 0; visibility: hidden;
+		}
+
+		&--body._hover &--video-wrapper {
+			transform: scale3d(1.1,1.1,1);
+		}
+
+		&--body:hover &--image img {
+			transform: scale3d(1.1,1.1,1);
+		}
+
+		&--body:hover &--toggle-btn {
+			& span {
+				&:first-child {
+					transform: translate3d(0,-100%,0);
+				}
+				&:last-child {
+					transform: translate3d(0,0%,0);
+				}
+			}
+		}
+
+		// .blog__card--image
+
+		&--image {
+			position: relative;
+			height: 2;
+			overflow: hidden;
+			height: 278px;
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0; top: 0;
+				width: 100%; height: 100%;
+				background: rgba(0, 0, 0, 0.39);
+			}
+
+			& img {
+				width: 100%;
+				transition: transform .2s ease-in-out;
+				object-fit: cover;
+			}
+		}
+
+		// .blog__card--toggle-btn
+
+		&--toggle-btn {
+			position: absolute;
+			right: 38px; bottom: 35px;
+			z-index: 2;
+			background: transparent;
+		}
+
+		// .blog__card--info
+
+		&--info {
+			padding-top: 34px;
+
+			color: var(--black);
+		}
+
+		// .blog__card--name
+
+		&--name {
+			font-weight: 500;
+			font-size: 1.375rem;
+			line-height: 139.3%;
+		}
+
+		// .blog__card--text
+
+		&--text {
+			padding-top: 9px;
+
+			font-size: 0.875rem;
+			line-height: 146.4%;
+		}
+
+	}
+}

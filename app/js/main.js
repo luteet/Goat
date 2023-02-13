@@ -660,10 +660,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 					} else {
 						
-						const parallaxElementAnchor = document.querySelector(parallaxElement.dataset.anchor);
+						const parallaxElementAnchor = parallaxElement.dataset.anchor ? document.querySelector(parallaxElement.dataset.anchor) : parallaxElement.parentElement,
+						delta = parallaxElement.dataset.delta ? Number(parallaxElement.dataset.delta) : 7;
 
-						if (parallaxElementAnchor.offsetTop > scrollPositionY - (window.innerHeight)) {
-							let result = (parallaxElementAnchor.offsetTop - scrollPositionY) / 7;
+						if (parallaxElementAnchor.getBoundingClientRect().y < window.innerHeight) {
+							let result = parallaxElementAnchor.getBoundingClientRect().y / delta;
 							if (result >= parallaxElement.offsetHeight) result = parallaxElement.offsetHeight; else if (result <= -parallaxElement.offsetHeight) result = -parallaxElement.offsetHeight;
 		
 							parallaxElement.style.setProperty('--y', result  + 'px');
@@ -691,7 +692,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			const parallaxElements = document.querySelectorAll('.anim-parallax-element'),
 			horizontalParallaxElements = document.querySelectorAll('.anim-horizontal-parallax-element');
 	
-	
+			parallaxElementsFunc(0);
+
 			function smoothScrollbarInit() {
 	
 				bodyScrollBar = Scrollbar.init(bodyScroll, {

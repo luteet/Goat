@@ -146,14 +146,11 @@
 	line-height: 128.4%;
 	color: rgba(0, 0, 0, 0.35);
 	text-transform: uppercase;
+	&._light {
+		color: rgba(255, 255, 255, 0.35);
+	}
 }
 
-.section-title {
-
-	font-family: var(--title-font);
-	font-weight: 700;
-
-}
 
 .txt-center {
 	text-align: center;

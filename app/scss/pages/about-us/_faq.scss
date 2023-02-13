@@ -51,11 +51,18 @@
 			letter-spacing: -0.035em;
 			color: #000000;
 
+			& br {
+				display: none;
+			}
+
 			@media (min-width: 965px) {
 				grid-column: 1; grid-row: 0/2;
 				font-size: 1.625rem;
 				max-width: 250px;
 				padding-bottom: 0px;
+				& br {
+					display: inline;
+				}
 			}
 
 			@media (min-width: 1105px) {
