@@ -129,14 +129,13 @@ body.addEventListener('click', function (event) {
 
 	// =-=-=-=-=-=-=-=-=-=- <FAQ> -=-=-=-=-=-=-=-=-=-=-
 
-	const faqItemHeader = $('.faq__item--header');
-	if(faqItemHeader) {
+	const faqItem = $('.faq__item');
+	if(faqItem) {
 
-		if(!faqItemHeader.classList.contains('_animating')) {
-			faqItemHeader.classList.add('_animating');
+		if(!faqItem.classList.contains('_animating')) {
+			faqItem.classList.add('_animating');
 			
-			const faqItem = faqItemHeader.closest('.faq__item'),
-			  faqItemContent = faqItem.querySelector('.faq__item--content');
+			const faqItemContent = faqItem.querySelector('.faq__item--content');
 
 		
 			/* faqItemContent.style.display = 'block';
@@ -161,7 +160,7 @@ body.addEventListener('click', function (event) {
 						faqItemContent.style.removeProperty('transition-property')
 						faqItemContent.style.display = 'none';
 						faqItemContent.style.removeProperty('height')
-						faqItemHeader.classList.remove('_animating');
+						faqItem.classList.remove('_animating');
 					},300)
 				},0)
 
@@ -185,7 +184,7 @@ body.addEventListener('click', function (event) {
 					setTimeout(() => {
 						faqItemContent.style.removeProperty('transition-property')
 						faqItemContent.style.removeProperty('height');
-						faqItemHeader.classList.remove('_animating');
+						faqItem.classList.remove('_animating');
 					},300)
 				},0)
 				
@@ -661,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					} else {
 						
 						const parallaxElementAnchor = parallaxElement.dataset.anchor ? document.querySelector(parallaxElement.dataset.anchor) : parallaxElement.parentElement,
-						delta = parallaxElement.dataset.delta ? Number(parallaxElement.dataset.delta) : 7;
+						delta = parallaxElement.dataset.delta ? Number(parallaxElement.dataset.delta) : 14;
 
 						if (parallaxElementAnchor.getBoundingClientRect().y < window.innerHeight) {
 							let result = parallaxElementAnchor.getBoundingClientRect().y / delta;

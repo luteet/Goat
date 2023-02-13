@@ -28,6 +28,8 @@
 		padding: 46px 0;
 		border-top: 1px solid rgba(0, 0, 0, 0.12);
 
+		cursor: pointer;
+
 		@media (min-width: 475px) {
 			padding: 54px 0;
 		}
@@ -82,9 +84,6 @@
 			}
 			
 			position: relative;
-
-			user-select: none;
-			cursor: pointer;
 
 			display: flex;
 			align-items: center;
